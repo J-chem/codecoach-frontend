@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {LayoutModule} from "./layout/layout.module";
 import {MainModule} from "./main/main.module";
+import {RegisterUserModule} from "./register-user/register-user.module";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -16,7 +18,10 @@ import {MainModule} from "./main/main.module";
     BrowserModule,
     AppRoutingModule,
     LayoutModule,
-    MainModule
+    MainModule,
+    RegisterUserModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
