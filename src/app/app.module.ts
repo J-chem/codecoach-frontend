@@ -21,7 +21,6 @@ import {AuthenticationInterceptor} from "./interceptor/authentication.intercepto
     LayoutModule,
     MainModule,
     CoacheeProfileModule,
-    MainModule,
     HttpClientModule
   ],
   providers: [{
