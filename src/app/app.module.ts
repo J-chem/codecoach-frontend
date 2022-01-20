@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {LayoutModule} from "./layout/layout.module";
 import {MainModule} from "./main/main.module";
+import { CoacheeProfileModule } from './coachee-profile/coachee-profile.module';
 
 
 
@@ -16,7 +17,8 @@ import {MainModule} from "./main/main.module";
     BrowserModule,
     AppRoutingModule,
     LayoutModule,
-    MainModule
+    MainModule,
+    CoacheeProfileModule
   ],
   providers: [],
   bootstrap: [AppComponent]
