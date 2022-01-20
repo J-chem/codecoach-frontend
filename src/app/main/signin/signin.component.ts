@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {SignInService} from "../../service/sign-in.service";
+import {Subscribable, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-signin',
@@ -9,10 +10,11 @@ import {SignInService} from "../../service/sign-in.service";
 })
 export class SigninComponent implements OnInit {
 
-  signInForm: FormGroup = this.formBuilder.group({
-    email: [``,[Validators.required]],
-    password: [``,[Validators.required]],
+  jwtToken!: Subscription;
 
+  signInForm: FormGroup = this.formBuilder.group({
+    email:'najima@dwaynians.com',
+    password: 'password'
   });
 
   constructor(private formBuilder: FormBuilder, private signInService: SignInService) { }
@@ -20,8 +22,8 @@ export class SigninComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  signIn(signInForm: FormGroup): void{
-    this.signInService.signIn(signInForm).subscribe();
+  onSubmit(signInData: any): void{
+    this.signInService.signIn(signInData).subscribe()
   }
 
 }
