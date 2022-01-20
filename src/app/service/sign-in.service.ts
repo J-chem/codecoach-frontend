@@ -18,8 +18,7 @@ export class SignInService {
     const signInBody = new URLSearchParams();
     signInBody.set('username', signInData.email);
     signInBody.set('password', signInData.password);
-    signInBody.set('client_id', 'order');
-    signInBody.set('client_secret', 'afc74d17-d5e9-49bf-8f59-ac22538505b6');
+    signInBody.set('client_id', 'CodeCoach-Dwaynians');
     signInBody.set('grant_type', 'password');
     let options = {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
