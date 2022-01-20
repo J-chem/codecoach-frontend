@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-apply-become-a-coach',
@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ApplyBecomeACoachComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
+  }
+
+  apply(): void {
+    let hasApplied = confirm("Do you really want to become a coach?");
+
+    if(hasApplied){
+      //todo: create new coach & redirect to profile
+
+    }
   }
 
 }
