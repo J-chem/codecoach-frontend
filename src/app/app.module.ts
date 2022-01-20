@@ -5,7 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {LayoutModule} from "./layout/layout.module";
 import {MainModule} from "./main/main.module";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {AuthenticationInterceptor} from "./interceptor/authentication.interceptor";
 
 
 
@@ -20,7 +21,10 @@ import {HttpClientModule} from "@angular/common/http";
     MainModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true
+
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
