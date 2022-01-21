@@ -11,8 +11,8 @@ import {Router} from "@angular/router";
 export class SigninComponent implements OnInit {
 
   signInForm: FormGroup = this.formBuilder.group({
-    email: 'najima@dwaynians.com',
-    password: 'password'
+    email: ['najima@dwaynians.com', []],
+    password: ['password', []]
   });
 
   constructor(
