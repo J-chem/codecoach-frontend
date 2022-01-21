@@ -1,8 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormBuilder, Validators} from "@angular/forms";
-import {SignInService} from "../../service/sign-in.service";
-import {Subscribable, Subscription} from "rxjs";
-import {KeycloakTokenResponse} from "../../keycloak/keycloak-token-response";
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup} from "@angular/forms";
 import {KeycloakService} from "../../service/keycloak.service";
 import {Router} from "@angular/router";
 
@@ -13,19 +10,18 @@ import {Router} from "@angular/router";
 })
 export class SigninComponent implements OnInit {
 
-  jwtToken!: any;
-
   signInForm: FormGroup = this.formBuilder.group({
-    email:'najima@dwaynians.com',
+    email: 'najima@dwaynians.com',
     password: 'password'
   });
 
-  constructor(private formBuilder: FormBuilder, private keycloakService: KeycloakService, private route: Router) { }
+  constructor(private formBuilder: FormBuilder, private keycloakService: KeycloakService, private route: Router) {
+  }
 
   ngOnInit(): void {
   }
 
-  onSubmit(signInData: any): void{
+  onSubmit(signInData: any): void {
     this.keycloakService.logIn(signInData).subscribe();
     this.route.navigate([""]).then();
   }
