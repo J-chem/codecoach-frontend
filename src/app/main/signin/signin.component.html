@@ -8,23 +8,32 @@
             <div class="input-field col s12">
               <input id="email" type="email" class="validate" formControlName="email">
               <label for="email">Email</label>
+<!--              <div class="row left-align red-text" *ngIf="controls['email'].errors?.['required']">-->
+<!--                {{errorMessage}}-->
+<!--              </div>-->
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
               <input id="password" type="password" class="validate" formControlName="password">
               <label for="password">Password</label>
+<!--              <div class="row left-align red-text" *ngIf="controls['password'].errors?.['required']">-->
+<!--                {{errorMessage}}-->
+<!--              </div>-->
             </div>
           </div>
-          <div class="row right-align">
+          <div class="row right-align s6">
             <a class="waves-effect waves-light teal lighten-3 btn-large black-text">Reset password<i
               class="material-icons right">autorenew</i></a>
             <button class="waves-effect waves-light yellow darken-2 btn-large black-text">Sign in<i
               class="material-icons right">send</i></button>
+            <div class="row left-align red-text" *ngIf="isError ||
+          (controls['password'].errors?.['required'] && !controls['password'].pristine)
+          || (controls['email'].errors?.['required'] && !controls['email'].pristine)">
+              {{errorMessage}}
+            </div>
           </div>
-          <div class="row left-align" *ngIf="errorMessage">
-            {{errorMessage}}
-          </div>
+
         </form>
       </div>
     </div>
