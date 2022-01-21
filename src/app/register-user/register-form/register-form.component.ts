@@ -10,7 +10,8 @@ import {MatchingPasswordValidator} from "../validator/matching-password.validato
 })
 export class RegisterFormComponent implements OnInit, AfterViewInit {
 
-  constructor(private materializeService: MaterializeService, private formBuilder: FormBuilder, private validator: MatchingPasswordValidator) { }
+  constructor(private materializeService: MaterializeService, private formBuilder: FormBuilder) { }
+// , private validator: MatchingPasswordValidator
 
   registerUserForm = this.formBuilder.group({
     first_name: ['', [Validators.required, Validators.minLength(3)]],
@@ -20,7 +21,8 @@ export class RegisterFormComponent implements OnInit, AfterViewInit {
 
       // email: ['', [Validators.required, Validators.pattern("^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$")]],
     password: ['', [ Validators.required, Validators.minLength(8), Validators.pattern("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|\\]).{8,32}$")]],
-    repeat_password: ['', [Validators.required, this.validator.validate]]
+    repeat_password: ['', [Validators.required]]
+  //  , this.validator.validate
   }
   )
 

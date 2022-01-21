@@ -9,7 +9,7 @@
         <div class="content-container-with-padding z-depth-4">
 
           <div class="row">
-            <form class="col s12" [formGroup]="registerUserForm" ]>
+            <form class="col s12" [formGroup]="registerUserForm" >
               <div class="row">
                 <div class="input-field col s6">
                   <input id="first_name" type="text" class="validate" >
@@ -48,27 +48,27 @@
 
 
               <div class="row right-align">
-                <a class="waves-effect waves-light yellow darken-2 btn-large black-text" disabled="!registerUserForm.valid">Register<i class="material-icons right">send</i></a>
+                <a class="waves-effect waves-light yellow darken-2 btn-large black-text" >Register<i class="material-icons right">send</i></a>
               </div>
 
-              <div class="row right-align" *ngIf="(first_name.errors?.['minlength' ] || first_name.errors?.['required'])  && !first_name.pristine">
-                <p class="invalid-message">Your <strong>first name</strong> must be at least 3 characters long.</p>
-              </div>
-              <div class="row right-align" *ngIf="(last_name.errors?.['minlength' ] || last_name.errors?.['required'])  && !last_name.pristine">
-                <p class="invalid-message">Your <strong>last name</strong> must be at least 3 characters long.</p>
-              </div>
-              <div class="row right-align" *ngIf="(team.errors?.['minlength' ] || team.errors?.['required'])  && !team.pristine">
-                <p class="invalid-message">Your <strong>team</strong> must be at least 3 characters long.</p>
-              </div>
-              <div class="row right-align" *ngIf="(email.errors?.['minlength' ] || email.errors?.['required'])  && !email.pristine">
-                <p class="invalid-message">Please enter a valid <strong>email</strong>.</p>
-              </div>
-              <div class="row right-align" *ngIf="(password.errors?.['minlength' ] || password.errors?.['required'])  && !password.pristine">
-                <p class="invalid-message">Your <strong>password</strong> must be contain 8 characters, 1 uppercase, 1 lowercase and 1 special character.</p>
-              </div>
-              <div class="row right-align" *ngIf="(repeat_password.errors?.['required'] || repeat_password.errors?.['validate'])  && !first_name.pristine">
-                <p class="invalid-message">Your item's <strong>name</strong> must be at least 3 characters long.</p>
-              </div>
+<!--              <div class="row right-align" *ngIf="(first_name.errors?.['minlength' ] || first_name.errors?.['required'])  && !first_name.pristine">-->
+<!--                <p class="invalid-message">Your <strong>first name</strong> must be at least 3 characters long.</p>-->
+<!--              </div>-->
+<!--              <div class="row right-align" *ngIf="(last_name.errors?.['minlength' ] || last_name.errors?.['required'])  && !last_name.pristine">-->
+<!--                <p class="invalid-message">Your <strong>last name</strong> must be at least 3 characters long.</p>-->
+<!--              </div>-->
+<!--              <div class="row right-align" *ngIf="(team.errors?.['minlength' ] || team.errors?.['required'])  && !team.pristine">-->
+<!--                <p class="invalid-message">Your <strong>team</strong> must be at least 3 characters long.</p>-->
+<!--              </div>-->
+<!--              <div class="row right-align" *ngIf="(email.errors?.['minlength' ] || email.errors?.['required'])  && !email.pristine">-->
+<!--                <p class="invalid-message">Please enter a valid <strong>email</strong>.</p>-->
+<!--              </div>-->
+<!--              <div class="row right-align" *ngIf="(password.errors?.['minlength' ] || password.errors?.['required'])  && !password.pristine">-->
+<!--                <p class="invalid-message">Your <strong>password</strong> must be contain 8 characters, 1 uppercase, 1 lowercase and 1 special character.</p>-->
+<!--              </div>-->
+<!--              <div class="row right-align" *ngIf="(repeat_password.errors?.['required'] || repeat_password.errors?.['validate'])  && !first_name.pristine">-->
+<!--                <p class="invalid-message">Your item's <strong>name</strong> must be at least 3 characters long.</p>-->
+<!--              </div>-->
             </form>
           </div>
 
