@@ -20,7 +20,7 @@ import {AuthenticationInterceptor} from "./interceptor/authentication.intercepto
     AppRoutingModule,
     LayoutModule,
     MainModule,
-    CoacheeProfileModule
+    CoacheeProfileModule,
     MainModule,
     HttpClientModule
   ],

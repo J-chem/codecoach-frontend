@@ -17,11 +17,9 @@ export class ApplyBecomeACoachComponent implements OnInit {
 
   apply(): void {
     let hasApplied = confirm("Do you really want to become a coach?");
-
     if(hasApplied){
       this.userService.updateUserToCoach();
-      // todo this.router.navigate(["/becomacoach"]).then();
-
+      this.router.navigate(['profile']).then();
     }
   }
 
