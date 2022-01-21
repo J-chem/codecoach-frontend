@@ -15,7 +15,10 @@ export class SigninComponent implements OnInit {
     password: 'password'
   });
 
-  constructor(private formBuilder: FormBuilder, private keycloakService: KeycloakService, private route: Router) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private keycloakService: KeycloakService,
+    private route: Router) {
   }
 
   ngOnInit(): void {
