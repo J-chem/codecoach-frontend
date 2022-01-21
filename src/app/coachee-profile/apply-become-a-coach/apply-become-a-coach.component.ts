@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {UserService} from "../../service/user.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-apply-become-a-coach',
@@ -7,7 +9,7 @@ import {Component, OnInit} from '@angular/core';
 })
 export class ApplyBecomeACoachComponent implements OnInit {
 
-  constructor() {
+  constructor(private userService: UserService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -17,7 +19,8 @@ export class ApplyBecomeACoachComponent implements OnInit {
     let hasApplied = confirm("Do you really want to become a coach?");
 
     if(hasApplied){
-      //todo: create new coach & redirect to profile
+      this.userService.updateUserToCoach();
+      // todo this.router.navigate(["/becomacoach"]).then();
 
     }
   }
