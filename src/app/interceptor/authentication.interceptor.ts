@@ -1,7 +1,6 @@
 import {Injectable} from "@angular/core";
-import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
-import {Observable, throwError} from "rxjs";
-import {catchError, tap} from "rxjs/operators";
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
+import {Observable} from "rxjs";
 import {Router} from "@angular/router";
 import {KeycloakService} from "../service/keycloak.service";
 
@@ -19,7 +18,7 @@ export class AuthenticationInterceptor implements HttpInterceptor {
       return next.handle(req);
     }
 
-    if(this.router.url === '/signin') {
+    if (this.router.url === '/signin') {
       return next.handle(req);
     }
 
@@ -29,15 +28,15 @@ export class AuthenticationInterceptor implements HttpInterceptor {
       }
     })
     return next.handle(req).pipe(
-      // catchError(
-      //   (err: HttpErrorResponse) => {
-      //   if (err.status === 403 || err.status === 401) {
-      //     this.router.navigateByUrl("/error").then();
-      //   } else if(err.status === 0) {
-      //     this.router.navigateByUrl("/backend-unavailable").then()
-      //   }
-      //   return new Error(err as unknown as string);
-      // })
+      //   catchError(
+      //     (err: any) => {
+      //     if (err.status === 403 || err.status === 401) {
+      //       this.router.navigateByUrl("/error").then();
+      //     } else if(err.status === 0) {
+      //       this.router.navigateByUrl("/backend-unavailable").then()
+      //     }
+      //     return new Error(err as unknown as string);
+      //   })
     );
   }
 }
