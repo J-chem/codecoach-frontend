@@ -21,7 +21,9 @@
               class="material-icons right">autorenew</i></a>
             <button class="waves-effect waves-light yellow darken-2 btn-large black-text">Sign in<i
               class="material-icons right">send</i></button>
-
+          </div>
+          <div class="row left-align" *ngIf="errorMessage">
+            {{errorMessage}}
           </div>
         </form>
       </div>
