@@ -69,8 +69,8 @@
                 <p class="invalid-message">Please enter a valid <strong>email</strong>.</p>
               </div>
               <div class="row right-align"
-                   *ngIf="(password.errors?.['minlength' ] || password.errors?.['required'])  && !password.pristine">
-                <p class="invalid-message">Your <strong>password</strong> must be contain 8 characters, 1 uppercase, 1
+                   *ngIf="(password.errors?.['minlength' ] || password.errors?.['required'] || password.errors?.['pattern'])  && !password.pristine">
+                <p class="invalid-message">Your <strong>password</strong> must contain 8 characters, 1 uppercase, 1
                   lowercase and 1 special character.</p>
               </div>
               <div class="row right-align" *ngIf="(repeat_password.errors?.['required'])  && !repeat_password.pristine">
