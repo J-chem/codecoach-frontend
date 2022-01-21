@@ -1,6 +1,8 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {MaterializeService} from "../../service/materialize.service";
-import {FormBuilder, FormControl, Validators} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {matchingPasswordDirective} from "../validator/matching-password.directive";
+
 
 @Component({
   selector: 'app-register-form',
@@ -9,19 +11,19 @@ import {FormBuilder, FormControl, Validators} from "@angular/forms";
 })
 export class RegisterFormComponent implements OnInit, AfterViewInit {
 
-  constructor(private materializeService: MaterializeService, private formBuilder: FormBuilder) {
+  constructor(private materializeService: MaterializeService) {
   }
 
-  registerUserForm = this.formBuilder.group({
-      first_name: ['', [Validators.required, Validators.minLength(3)]],
-      last_name: ['', [Validators.required, Validators.minLength(3)]],
-      team: ['', [Validators.required, Validators.minLength(2)]],
-      email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"
-      )]],
-      password: ['', [Validators.required, Validators.minLength(8), Validators.pattern("^(?=.*\\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\\w\\d\\s:])([^\\s]){8,16}$")]],
-      repeat_password: ['', [Validators.required]]
-    }
-  )
+  registerUserForm = new FormGroup({
+    'first_name': new FormControl('', [Validators.required, Validators.minLength(3)]),
+    'last_name': new FormControl('', [Validators.required, Validators.minLength(3)]),
+    'team': new FormControl('', [Validators.required, Validators.minLength(2)]),
+    'email': new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"
+    )]),
+    'password': new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern("^(?=.*\\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\\w\\d\\s:])([^\\s]){8,16}$")]),
+    'repeat_password': new FormControl('', [Validators.required])
+  }, {validators: matchingPasswordDirective});
+
 
   get first_name(): FormControl {
     return this.registerUserForm!.get('first_name') as FormControl;
@@ -46,9 +48,6 @@ export class RegisterFormComponent implements OnInit, AfterViewInit {
   get repeat_password(): FormControl {
     return this.registerUserForm!.get('repeat_password') as FormControl;
   }
-
-
-
 
   ngOnInit(): void {
   }
