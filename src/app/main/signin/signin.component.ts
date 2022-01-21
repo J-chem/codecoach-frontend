@@ -27,7 +27,7 @@ export class SigninComponent implements OnInit {
 
   onSubmit(signInData: any): void{
     this.keycloakService.logIn(signInData).subscribe();
-    this.route.navigate([""]).then();
+    this.route.navigate(['profile']).then();
   }
 
 }
