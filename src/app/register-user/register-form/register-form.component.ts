@@ -63,7 +63,10 @@ export class RegisterFormComponent implements OnInit, AfterViewInit {
   }
 
   register(){
-    this.userService.register(this.registerUserForm.value).subscribe();
-    this.router.navigate(["/"]);
+    this.userService.register(this.registerUserForm.value).subscribe(user => {
+      if(user) {
+        this.router.navigate(["/"])
+      }
+    });
   }
 }
