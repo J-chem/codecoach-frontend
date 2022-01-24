@@ -9,14 +9,14 @@
         <div class="content-container-with-padding z-depth-4">
 
           <div class="row">
-            <form class="col s12" [formGroup]="registerUserForm">
+            <form class="col s12" [formGroup]="registerUserForm" (ngSubmit)="onSubmit()">
               <div class="row">
                 <div class="input-field col s6">
-                  <input id="first_name" type="text" class="validate" formControlName="first_name">
+                  <input id="first_name" type="text" class="validate" formControlName="firstName">
                   <label for="first_name">First Name</label>
                 </div>
                 <div class="input-field col s6">
-                  <input id="last_name" type="text" class="validate" formControlName="last_name">
+                  <input id="last_name" type="text" class="validate" formControlName="lastName">
                   <label for="last_name">Last Name</label>
                 </div>
               </div>
@@ -53,11 +53,11 @@
               </div>
 
               <div class="row right-align"
-                   *ngIf="(first_name.errors?.['minlength' ] || first_name.errors?.['required'])  && !first_name.pristine">
+                   *ngIf="(firstName.errors?.['minlength' ] || firstName.errors?.['required'])  && !firstName.pristine">
                 <p class="invalid-message">Your <strong>first name</strong> must be at least 3 characters long.</p>
               </div>
               <div class="row right-align"
-                   *ngIf="(last_name.errors?.['minlength' ] || last_name.errors?.['required'])  && !last_name.pristine">
+                   *ngIf="(firstName.errors?.['minlength' ] || firstName.errors?.['required'])  && !firstName.pristine">
                 <p class="invalid-message">Your <strong>last name</strong> must be at least 3 characters long.</p>
               </div>
               <div class="row right-align"

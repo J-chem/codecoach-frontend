@@ -2,6 +2,8 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {MaterializeService} from "../../service/materialize.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {matchingPasswordDirective} from "../validator/matching-password.directive";
+import {UserService} from "../../service/user.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -11,26 +13,26 @@ import {matchingPasswordDirective} from "../validator/matching-password.directiv
 })
 export class RegisterFormComponent implements OnInit, AfterViewInit {
 
-  constructor(private materializeService: MaterializeService) {
+  constructor(private materializeService: MaterializeService, private userService: UserService, private router: Router) {
   }
 
   registerUserForm = new FormGroup({
-    'first_name': new FormControl('', [Validators.required, Validators.minLength(3)]),
-    'last_name': new FormControl('', [Validators.required, Validators.minLength(3)]),
-    'team': new FormControl('', [Validators.required, Validators.minLength(2)]),
+    'firstName': new FormControl('', [Validators.required, Validators.minLength(3)]),
+    'lastName': new FormControl('', [Validators.required, Validators.minLength(3)]),
     'email': new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"
     )]),
     'password': new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern("^(?=.*\\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\\w\\d\\s:])([^\\s]){8,16}$")]),
+    'team': new FormControl('', [Validators.required, Validators.minLength(2)]),
     'repeat_password': new FormControl('', [Validators.required])
   }, {validators: matchingPasswordDirective});
 
 
-  get first_name(): FormControl {
-    return this.registerUserForm!.get('first_name') as FormControl;
+  get firstName(): FormControl {
+    return this.registerUserForm!.get('firstName') as FormControl;
   }
 
-  get last_name(): FormControl {
-    return this.registerUserForm!.get('last_name') as FormControl;
+  get lastName(): FormControl {
+    return this.registerUserForm!.get('lastName') as FormControl;
   }
 
   get team(): FormControl {
@@ -56,4 +58,12 @@ export class RegisterFormComponent implements OnInit, AfterViewInit {
     this.materializeService.autoInit();
   }
 
+  onSubmit() {
+    this.register();
+  }
+
+  register(){
+    this.userService.register(this.registerUserForm.value).subscribe();
+    this.router.navigate(["/"]);
+  }
 }
