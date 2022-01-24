@@ -1,9 +1,9 @@
 <header>
   <nav class="white" role="navigation">
     <div class="nav-wrapper container">
-      <a id="logo-container" href="#" class="brand-logo">CodeCoach</a>
+      <a id="logo-container" href="/" class="brand-logo">CodeCoach</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#">Home</a></li>
+        <li><a href="/">Home</a></li>
         <li><a href="#">About us</a></li>
         <li><a href="#">Contact</a></li>
         <span *ngIf="loggedInUser$ | async as loggedInUser; else notLoggedIn" class="navbar-text">Logged in as {{loggedInUser}}
@@ -14,7 +14,7 @@
           <span class="navbar-text">Not logged in</span>
           <li><a routerLink="/signin" class="waves-effect waves-light yellow darken-2 btn black-text">Sign in<i
             class="material-icons right">person</i></a></li>
-          <li><a class="waves-effect waves-light teal lighten-3 btn black-text">Register<i
+          <li><a class="waves-effect waves-light teal lighten-3 btn black-text" routerLink="/register">Register<i
             class="material-icons right">person_add</i></a></li>
         </ng-template>
       </ul>
@@ -23,9 +23,9 @@
         <li><a href="#">Home</a></li>
         <li><a href="#">About us</a></li>
         <li><a href="#">Contact</a></li>
-        <li><a class="waves-effect waves-light yellow darken-2 btn black-text">Sign in<i
+        <li><a class="waves-effect waves-light yellow darken-2 btn black-text" routerLink="/signin">Sign in<i
           class="material-icons right">person</i></a></li>
-        <li><a class="waves-effect waves-light teal lighten-3 btn black-text">Register<i
+        <li><a class="waves-effect waves-light teal lighten-3 btn black-text" routerLink="/register">Register<i
           class="material-icons right">person_add</i></a></li>
       </ul>
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>

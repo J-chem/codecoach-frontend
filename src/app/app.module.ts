@@ -7,6 +7,8 @@ import {LayoutModule} from "./layout/layout.module";
 import {MainModule} from "./main/main.module";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthenticationInterceptor} from "./interceptor/authentication.interceptor";
+import {RegisterUserModule} from "./register-user/register-user.module";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -19,7 +21,10 @@ import {AuthenticationInterceptor} from "./interceptor/authentication.intercepto
     AppRoutingModule,
     LayoutModule,
     MainModule,
-    HttpClientModule
+    HttpClientModule,
+    RegisterUserModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true
