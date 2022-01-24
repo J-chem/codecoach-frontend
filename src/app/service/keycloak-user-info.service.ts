@@ -14,7 +14,7 @@ export class KeycloakUserInfoService {
     this.url = 'https://keycloak.switchfully.com/auth/realms/java-oct-2021/protocol/openid-connect/userinfo';
   }
 
-  getUserinfo(token: string | null): Observable<KeycloakUserInfo>{
+  getUserinfo(token: string): Observable<KeycloakUserInfo>{
     let options = {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
         .set('Authorization', `Bearer ${token}`)
