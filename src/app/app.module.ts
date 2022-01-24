@@ -21,12 +21,10 @@ import {AuthenticationInterceptor} from "./interceptor/authentication.intercepto
     LayoutModule,
     MainModule,
     CoacheeProfileModule,
-    MainModule,
     HttpClientModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true
-
   }],
   bootstrap: [AppComponent]
 })

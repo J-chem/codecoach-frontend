@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {KeycloakService} from "../../service/keycloak.service";
 import {Router} from "@angular/router";
 
@@ -10,10 +10,17 @@ import {Router} from "@angular/router";
 })
 export class SigninComponent implements OnInit {
 
+  errorMessage: string = "Password and username are required";
+  isError: boolean = false;
+
   signInForm: FormGroup = this.formBuilder.group({
-    email: 'najima@dwaynians.com',
-    password: 'password'
+    email: ['najima@dwaynians.com', [Validators.required]],
+    password: ['password', [Validators.required]]
   });
+
+  get controls(): any {
+    return this.signInForm.controls;
+  }
 
   constructor(
     private formBuilder: FormBuilder,
@@ -25,8 +32,17 @@ export class SigninComponent implements OnInit {
   }
 
   onSubmit(signInData: any): void {
-    this.keycloakService.logIn(signInData).subscribe();
-    this.route.navigate(['profile']).then();
+    this.keycloakService.logIn(signInData).subscribe((_ => {
+        this.route.navigateByUrl('/profile').then();
+      }),
+      (fault => {
+        if (fault.status === 401) {
+          this.isError = true;
+          this.errorMessage = 'The username and password doesn\'t match';
+        }
+      })
+    );
+    // this.route.navigate(['profile']).then();
   }
 
 }
