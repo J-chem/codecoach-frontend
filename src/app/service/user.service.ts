@@ -14,7 +14,7 @@ export class UserService {
 
 
   constructor(private http: HttpClient) {
-    this._url = `http://${environment.backendUrl}/users`;
+    this._url = `${environment.backendUrl}/users`;
   }
 
   register(user: User): Observable<User> {

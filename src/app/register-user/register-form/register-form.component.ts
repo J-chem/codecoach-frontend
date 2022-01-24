@@ -65,7 +65,7 @@ export class RegisterFormComponent implements OnInit, AfterViewInit {
   register(){
     this.userService.register(this.registerUserForm.value).subscribe(user => {
       if(user) {
-        this.router.navigate(["/"])
+        this.router.navigate(['signin'])
       }
     });
   }
