@@ -14,7 +14,7 @@ export class SignInService {
     this.url = `https://keycloak.switchfully.com/auth/realms/java-oct-2021/protocol/openid-connect/token`
   }
 
-  signIn(signInData: any): Observable<any> {
+  signIn(signInData: any): Observable<KeycloakTokenResponse> {
     const signInBody = new URLSearchParams();
     signInBody.set('username', signInData.email);
     signInBody.set('password', signInData.password);
@@ -25,8 +25,6 @@ export class SignInService {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
     };
 
-    let postReturn = this.http.post<any>(this.url, signInBody, options);
-    console.log(postReturn.subscribe())
-    return postReturn;
+    return this.http.post<KeycloakTokenResponse>(this.url, signInBody, options);
   }
 }

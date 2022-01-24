@@ -12,12 +12,13 @@ import {KeycloakUserInfo} from "../keycloak/keycloak-user-info";
 })
 export class KeycloakService {
 
-  private keycloakUserInfo$!: KeycloakUserInfo;
   private readonly token_key_name = 'access_token';
   private readonly uuid = 'uuid';
   private _loggedInUser$: Subject<string | null> = new Subject();
 
-  constructor(private httpKeycloakService: SignInService, private keycloakUserInfoService: KeycloakUserInfoService) {
+  constructor(
+    private httpKeycloakService: SignInService,
+    private keycloakUserInfoService: KeycloakUserInfoService) {
   }
 
   get loggedInUser$(): Observable<string | null> {
@@ -34,8 +35,10 @@ export class KeycloakService {
 
   logIn(loginData: any): Observable<KeycloakTokenResponse> {
     return this.httpKeycloakService.signIn(loginData)
-      .pipe(tap(response => this.setToken(response.access_token))).pipe(tap(response => {
-        this.keycloakUserInfoService.getUserinfo(response.access_token).subscribe(userInfo => this.setId(userInfo.sub));
+      .pipe(tap(response => this.setToken(response.access_token)))
+      .pipe(tap(response => {
+        this.keycloakUserInfoService.getUserinfo(response.access_token)
+          .subscribe(userInfo => this.setId(userInfo.sub));
       }));
   }
 
