@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {KeycloakService} from "./keycloak.service";
-import {catchError, throwError} from "rxjs";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -16,15 +16,7 @@ export class UserService {
     this._userUrl = `${environment.backendUrl}/users`;
   }
 
-  updateUserToCoach(): void {
-    this.keycloakService.loggedInUser$
-      .subscribe(userName => {
-        this.http.put(this._userUrl + '/' + userName, null)
-          .pipe(catchError(error => {
-            console.log(error);
-            return throwError(error);
-          }));
-      });
+  updateUserToCoach(): Observable<any> {
+    return this.http.put<any>(this._userUrl + '/' + this.keycloakService.getUsername(), null);
   }
-
 }
