@@ -25,7 +25,6 @@ import {AuthenticationInterceptor} from "./interceptor/authentication.intercepto
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true
-
   }],
   bootstrap: [AppComponent]
 })
