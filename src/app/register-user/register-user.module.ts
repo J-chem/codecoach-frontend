@@ -3,7 +3,6 @@ import {CommonModule} from '@angular/common';
 import {RegisterFormComponent} from './register-form/register-form.component';
 import {RouterModule} from "@angular/router";
 import {ReactiveFormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -13,8 +12,7 @@ import {HttpClientModule} from "@angular/common/http";
   imports: [
     CommonModule,
     RouterModule,
-    ReactiveFormsModule,
-    HttpClientModule
+    ReactiveFormsModule
   ]
 })
 export class RegisterUserModule {
