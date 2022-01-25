@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {LayoutModule} from "./layout/layout.module";
 import {MainModule} from "./main/main.module";
+import { CoacheeProfileModule } from './coachee-profile/coachee-profile.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthenticationInterceptor} from "./interceptor/authentication.interceptor";
 import {RegisterUserModule} from "./register-user/register-user.module";
@@ -26,10 +27,12 @@ import { CoachOverviewComponent } from './coach-overview/coach-overview.componen
     HttpClientModule,
     RegisterUserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CoacheeProfileModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true
+
   }],
   bootstrap: [AppComponent]
 })

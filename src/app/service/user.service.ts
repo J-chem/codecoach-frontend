@@ -3,6 +3,8 @@ import {catchError, Observable, of} from "rxjs";
 import {User} from "../model/User";
 import {environment} from "../../environments/environment";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {KeycloakService} from "./keycloak.service";
+
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +34,10 @@ export class UserService {
 
       return of(result as T);
     };
+  }
+
+  updateUserToCoach(): Observable<any> {
+    const url = `${this._url}/${localStorage.getItem('uuid')}/become-a-coach`;
+    return this.http.post<any>(url, null);
   }
 }
