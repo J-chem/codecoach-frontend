@@ -9,12 +9,14 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthenticationInterceptor} from "./interceptor/authentication.interceptor";
 import {RegisterUserModule} from "./register-user/register-user.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { CoachOverviewComponent } from './coach-overview/coach-overview.component';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CoachOverviewComponent
   ],
   imports: [
     BrowserModule,
