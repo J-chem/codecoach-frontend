@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { RequestSessionRoutingModule } from './request-session-routing.module';
 import { RequestSessionFormComponent } from './request-session-form/request-session-form.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { RequestSessionFormComponent } from './request-session-form/request-sess
   ],
   imports: [
     CommonModule,
-    RequestSessionRoutingModule
+    RequestSessionRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class RequestSessionModule { }

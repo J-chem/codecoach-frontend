@@ -4,41 +4,64 @@
     <div class="col s12 m12">
 
 
-      <h1 class="center teal-text lighten-3">Request a session</h1>
+      <h1 class="center teal-text lighten-3">Request a session with</h1>
+      <h3 class="center teal-text lighten-3">{{firstName}} {{lastName}}</h3>
       <div class="content-container-with-padding z-depth-4">
 
         <div class="row">
-          <form class="col s12">
+          <form class="col s12" [formGroup]="requestSessionForm" (ngSubmit)="onSubmit()">
             <div class="row">
               <div class="input-field col s12">
-                <textarea id="topic" class="materialize-textarea"></textarea>
+                <textarea id="topic" class="materialize-textarea" formControlName="topicId"></textarea>
                 <label for="topic">On which topic/subject would you like to have a coaching session?</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s6">
-                <input id="date" type="text" class="datepicker">
+                <input id="date" type="text" class="datepicker" formControlName="date">
                 <label for="date">Date</label>
               </div>
               <div class="input-field col s6">
-                <input id="timepicker" type="text" class="timepicker">
+                <input id="timepicker" type="text" class="timepicker" formControlName="time">
                 <label for="timepicker">Time</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s12">
-                <input id="location" type="text" class="autocomplete">
+                <input id="location" type="text" class="autocomplete" formControlName="location">
                 <label for="location">Location</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s12">
-                <textarea id="remarks" class="materialize-textarea"></textarea>
+                <textarea id="remarks" class="materialize-textarea" formControlName="remarks"></textarea>
                 <label for="remarks">Remarks for the coach?</label>
               </div>
             </div>
             <div class="row right-align">
-              <a class="waves-effect waves-light yellow darken-2 btn-large black-text">Request session<i class="material-icons right">send</i></a>
+              <button class="waves-effect waves-light yellow darken-2 btn-large black-text"
+                      [disabled]="!requestSessionForm.valid">Request session<i class="material-icons right">send</i>
+              </button>
+            </div>
+
+            <div class="row right-align"
+                 *ngIf="(topicId.errors?.['required'])  && !topicId.pristine">
+              <p class="invalid-message">Please select a <strong>valid topic</strong>.</p>
+            </div>
+
+            <div class="row right-align"
+                 *ngIf="(date.errors?.['required'])  && !date.pristine">
+              <p class="invalid-message">Please select a <strong>date</strong>.</p>
+            </div>
+
+            <div class="row right-align"
+                 *ngIf="(time.errors?.['required'])  && !time.pristine">
+              <p class="invalid-message">Please select a <strong>time</strong>.</p>
+            </div>
+
+            <div class="row right-align"
+                 *ngIf="(location.errors?.['required'])  && !location.pristine">
+              <p class="invalid-message">Please select a <strong>location</strong>.</p>
             </div>
           </form>
         </div>
