@@ -61,7 +61,7 @@ export class KeycloakService {
     this._loggedInUser$.next(this.getUsername());
   }
 
-  private getUsername(): string | null {
+  getUsername(): string | null {
     let token = this.getToken();
     if (token) {
       return (JWT.default(token) as KeycloakToken).preferred_username
