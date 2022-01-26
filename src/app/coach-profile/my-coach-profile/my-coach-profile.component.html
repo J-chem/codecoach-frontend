@@ -6,10 +6,10 @@
       <div class="content-container">
         <h6>My Coach Profile</h6>
         <div class="collection">
-          <a href="#!" class="collection-item black-text active teal lighten-3">Profile Information</a>
-          <a href="#!" class="collection-item grey-text text-darken-2">Coaching sessions<span
+          <a href="#" class="collection-item black-text active teal lighten-3">Profile Information</a>
+          <a href="#" class="collection-item grey-text text-darken-2">Coaching sessions<span
             class="btn-floating btn-small teal lighten-3 pulse">1</span></a>
-          <a href="#!" class="collection-item grey-text text-darken-2">Request profile change</a>
+          <a href="#" class="collection-item grey-text text-darken-2">Request profile change</a>
         </div>
       </div>
     </div>
@@ -29,20 +29,16 @@
               <table class="highlight">
                 <tbody>
                 <tr>
-                  <td><strong>First name</strong></td>
-                  <td>Antoine</td>
+                  <td ><strong>First name</strong></td>
+                  <td>{{selectedUser?.firstName}}</td>
                 </tr>
                 <tr>
                   <td><strong>Last name</strong></td>
-                  <td>Leroy</td>
+                  <td>{{selectedUser?.lastName}}</td>
                 </tr>
                 <tr>
                   <td><strong>Email</strong></td>
-                  <td>antoine.leroy@gmail.com</td>
-                </tr>
-                <tr>
-                  <td><strong>Class</strong></td>
-                  <td>4 - Latin Science</td>
+                  <td>{{selectedUser?.email}}</td>
                 </tr>
                 </tbody>
               </table>
@@ -77,14 +73,18 @@
                 </tr>
                 <tr>
                   <td><strong>Introduction</strong></td>
-                  <td>My name is Antoine and I'm currently in the 4th grade. I'm mostly interested in
-                    science and math. My strength as a coach is to have a lot of patience while
-                    coaching. Feel free to contact me for a first coaching session.
+                  <td>
+<!--                    My name is Antoine and I'm currently in the 4th grade. I'm mostly interested in-->
+<!--                    science and math. My strength as a coach is to have a lot of patience while-->
+<!--                    coaching. Feel free to contact me for a first coaching session.-->
+                    {{ selectedUser?.coachInfoDto?.introduction}}
                   </td>
                 </tr>
                 <tr>
                   <td><strong>Availability</strong></td>
-                  <td>I'm usually available on wednesday and Friday after schoool between 16 and 17h.
+                  <td>
+<!--                    I'm usually available on wednesday and Friday after schoool between 16 and 17h.-->
+                    {{ selectedUser?.coachInfoDto?.availability}}
                   </td>
                 </tr>
                 </tbody>
@@ -106,32 +106,11 @@
             <div class="col s12">
               <table class="highlight">
                 <tbody>
-                <tr>
-                  <td><strong>Mathematics</strong></td>
+                <tr *ngFor="let cit of selectedUser?.coachInfoDto?.coachInfoTopicDtoList">
+<!--                  <td><strong>Mathematics {{ selectedUser && selectedUser.coachInfoDto.coachInfoTopicDtoList.length ? selectedUser.coachInfoDto.coachInfoTopicDtoList[0].topicDto.topicName : '' }}</strong></td>-->
+                  <td><strong>{{ cit.topicDto.topicName | titlecase }}</strong></td>
                   <td>
-                    <div class="center">
-                      <a class="btn-floating disabled"><i class="material-icons">filter_1</i></a>
-                      <a class="btn-floating disabled"><i class="material-icons">filter_2</i></a>
-                      <a class="btn-floating disabled"><i class="material-icons">filter_3</i></a>
-                      <a class="btn-floating"><i class="material-icons">filter_4</i></a>
-                      <a class="btn-floating disabled"><i class="material-icons">filter_5</i></a>
-                      <a class="btn-floating disabled"><i class="material-icons">filter_6</i></a>
-                      <a class="btn-floating disabled"><i class="material-icons">filter_7</i></a>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td><strong>Biology</strong></td>
-                  <td>
-                    <div class="center">
-                      <a class="btn-floating disabled"><i class="material-icons">filter_1</i></a>
-                      <a class="btn-floating disabled"><i class="material-icons">filter_2</i></a>
-                      <a class="btn-floating disabled"><i class="material-icons">filter_3</i></a>
-                      <a class="btn-floating disabled"><i class="material-icons">filter_4</i></a>
-                      <a class="btn-floating"><i class="material-icons">filter_5</i></a>
-                      <a class="btn-floating"><i class="material-icons">filter_6</i></a>
-                      <a class="btn-floating disabled"><i class="material-icons">filter_7</i></a>
-                    </div>
+                    <strong>{{ cit.expertise | titlecase}}</strong>
                   </td>
                 </tr>
                 </tbody>

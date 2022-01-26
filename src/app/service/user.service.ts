@@ -3,7 +3,6 @@ import {catchError, Observable, of} from "rxjs";
 import {User} from "../model/User";
 import {environment} from "../../environments/environment";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {KeycloakService} from "./keycloak.service";
 
 
 @Injectable({
@@ -39,5 +38,13 @@ export class UserService {
   updateUserToCoach(): Observable<any> {
     const url = `${this._url}/${localStorage.getItem('uuid')}/become-a-coach`;
     return this.http.post<any>(url, null);
+  }
+
+  getUserById(): Observable<User>{
+
+    const url = `${this._url}/${localStorage.getItem('uuid')}`;
+    return this.http.get<User>(url, this.httpOptions).pipe(
+      catchError(this.handleError<User>('getUser'))
+    );
   }
 }

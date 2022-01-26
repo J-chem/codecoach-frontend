@@ -10,6 +10,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthenticationInterceptor} from "./interceptor/authentication.interceptor";
 import {RegisterUserModule} from "./register-user/register-user.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {CoachProfileModule} from "./coach-profile/coach-profile.module";
 
 
 
@@ -26,7 +27,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     RegisterUserModule,
     FormsModule,
     ReactiveFormsModule,
-    CoacheeProfileModule
+    CoacheeProfileModule,
+    CoachProfileModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true

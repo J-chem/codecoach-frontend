@@ -1,5 +1,7 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {MaterializeService} from "../../service/materialize.service";
+import {UserService} from "../../service/user.service";
+import {User} from "../../model/User";
 
 @Component({
   selector: 'app-my-coach-profile',
@@ -8,13 +10,38 @@ import {MaterializeService} from "../../service/materialize.service";
 })
 export class MyCoachProfileComponent implements OnInit, AfterViewInit {
 
-  constructor(private materializeService: MaterializeService) { }
+  user = {
+    "firstName": "Laurie"
+  }
+
+  @Input() selectedUser?: User;
+
+  constructor(private materializeService: MaterializeService, private userService: UserService) { }
+
 
   ngOnInit(): void {
+    this.getUserById();
+
   }
 
   ngAfterViewInit(): void {
     this.materializeService.autoInit();
   }
 
+  getUserById(): void{
+    this.userService.getUserById().subscribe(user => {
+      this.selectedUser = user
+      console.log(user)
+    });
+
+  }
+
+
+  getUser(): any {
+    return this.user;
+  }
+
+  getSelectedUser(): User | undefined{
+    return this.selectedUser;
+  }
 }
