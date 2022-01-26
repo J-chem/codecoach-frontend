@@ -11,9 +11,17 @@
         <div class="row">
           <form class="col s12" [formGroup]="requestSessionForm" (ngSubmit)="onSubmit()">
             <div class="row">
+              <!--              <div class="input-field col s12">-->
+              <!--                <textarea id="topic" class="materialize-textarea" formControlName="topicId"></textarea>-->
+              <!--                <label for="topic">On which topic/subject would you like to have a coaching session?</label>-->
+              <!--              </div>-->
               <div class="input-field col s12">
-                <textarea id="topic" class="materialize-textarea" formControlName="topicId"></textarea>
-                <label for="topic">On which topic/subject would you like to have a coaching session?</label>
+                <select id="topic" formControlName="topicId">
+                  <option value="" disabled selected>Select a topic</option>
+                  <option *ngFor="let topic of topics" value="{{topic.id}}">{{topic.topicName}}</option>
+
+                </select>
+                <label for="topic">Session topic</label>
               </div>
             </div>
             <div class="row">
@@ -45,7 +53,7 @@
             </div>
 
             <div class="row right-align"
-                 *ngIf="(topicId.errors?.['required'])  && !topicId.pristine">
+                 *ngIf="(topicId.errors?.['required'])  && !requestSessionForm.pristine">
               <p class="invalid-message">Please select a <strong>valid topic</strong>.</p>
             </div>
 

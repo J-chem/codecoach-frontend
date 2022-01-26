@@ -2,6 +2,7 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {SessionService} from "../../service/session.service";
 import DatepickerOptions = M.DatepickerOptions;
+import {Topic} from "../../model/topic";
 
 @Component({
   selector: 'app-request-session-form',
@@ -13,7 +14,7 @@ export class RequestSessionFormComponent implements OnInit, AfterViewInit {
   firstName = 'Emil';
   lastName = "Noirhomme";
 
-  requestSessionForm = new FormGroup({
+  private _requestSessionForm = new FormGroup({
     'topicId': new FormControl('', [Validators.required]),
     'date': new FormControl('', [Validators.required]),
     'time': new FormControl('', [Validators.required]),
@@ -22,7 +23,18 @@ export class RequestSessionFormComponent implements OnInit, AfterViewInit {
   });
   private datePickerElem: any;
   private timePickerElem: any;
-
+  topics: Topic[] = [
+    {
+      id: '0dab9a2a-7ea2-11ec-90d6-0242ac120003',
+      topicName: 'BIOLOGY'
+    },
+    {
+      id: 'cab03db4-7e94-11ec-90d6-0242ac120003',
+      topicName: 'MATHEMATICS'
+    }, {
+      id: '44ff86a8-7ea7-11ec-90d6-0242ac120003',
+      topicName: 'JAVA'
+    }];
 
   constructor(private sessionService: SessionService) {
   }
@@ -31,35 +43,53 @@ export class RequestSessionFormComponent implements OnInit, AfterViewInit {
   }
 
   get topicId(): FormControl {
-    return this.requestSessionForm!.get('topicId') as FormControl;
+    return this._requestSessionForm!.get('topicId') as FormControl;
   }
 
   get date(): FormControl {
-    return this.requestSessionForm!.get('date') as FormControl;
+    return this._requestSessionForm!.get('date') as FormControl;
   }
 
   get time(): FormControl {
-    return this.requestSessionForm!.get('time') as FormControl;
+    return this._requestSessionForm!.get('time') as FormControl;
   }
 
   get location(): FormControl {
-    return this.requestSessionForm!.get('location') as FormControl;
+    return this._requestSessionForm!.get('location') as FormControl;
   }
 
   get remarks(): FormControl {
-    return this.requestSessionForm!.get('remarks') as FormControl;
+    return this._requestSessionForm!.get('remarks') as FormControl;
+  }
+
+
+  get requestSessionForm(): FormGroup {
+    return this._requestSessionForm;
   }
 
   ngAfterViewInit(): void {
-    setTimeout(() => {this.initializeDatePicker(); this.initializeTimePicker()}, 1);
+    setTimeout(() => {
+      this.initializeDatePicker();
+      this.initializeTimePicker()
+    }, 1);
   }
 
   onSubmit(): void {
+    console.log(this._requestSessionForm.value);
     this.requestSession();
   }
 
   requestSession() {
-    console.log(this.requestSessionForm.value);
+    // let sessionToRequest: CreateSession = {
+    //   'topicId': 'string',
+    //   'date': string,
+    //   'time': string,
+    //   'location': string,
+    //   'remarks': string,
+    //   'coachId': string,
+    //   'coacheeId': string
+    // }
+    // this.sessionService.requestSession()
   }
 
   private initializeDatePicker(): void {
@@ -67,8 +97,8 @@ export class RequestSessionFormComponent implements OnInit, AfterViewInit {
     const instances = M.Datepicker.init(elems, {
       format: 'dd/mm/yyyy',
       onClose: () => {
-        this.requestSessionForm.patchValue({date: this.datePickerElem.toString()});
-        this.requestSessionForm.updateValueAndValidity({onlySelf: false, emitEvent: true});
+        this._requestSessionForm.patchValue({date: this.datePickerElem.toString()});
+        this._requestSessionForm.updateValueAndValidity({onlySelf: false, emitEvent: true});
       }
     } as DatepickerOptions);
 
@@ -84,8 +114,8 @@ export class RequestSessionFormComponent implements OnInit, AfterViewInit {
     const instances = M.Timepicker.init(elems, {
       'twelveHour': false,
       'onCloseEnd': _ => {
-        this.requestSessionForm.patchValue({time: this.timePickerElem.time});
-        this.requestSessionForm.updateValueAndValidity({onlySelf: false, emitEvent: true});
+        this._requestSessionForm.patchValue({time: this.timePickerElem.time});
+        this._requestSessionForm.updateValueAndValidity({onlySelf: false, emitEvent: true});
       }
     });
     for (const instance of instances) {
