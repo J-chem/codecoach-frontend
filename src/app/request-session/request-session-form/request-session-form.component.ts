@@ -3,6 +3,8 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {SessionService} from "../../service/session.service";
 import DatepickerOptions = M.DatepickerOptions;
 import {Topic} from "../../model/topic";
+import {CreateSession} from "../../model/create-session";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-request-session-form',
@@ -13,6 +15,7 @@ export class RequestSessionFormComponent implements OnInit, AfterViewInit {
 
   firstName = 'Emil';
   lastName = "Noirhomme";
+  private coachId: string;
 
   private _requestSessionForm = new FormGroup({
     'topicId': new FormControl('', [Validators.required]),
@@ -36,10 +39,12 @@ export class RequestSessionFormComponent implements OnInit, AfterViewInit {
       topicName: 'JAVA'
     }];
 
-  constructor(private sessionService: SessionService) {
+  constructor(private sessionService: SessionService, private activatedRoute: ActivatedRoute) {
+    this.coachId = this.activatedRoute.snapshot.params['id'];
   }
 
   ngOnInit(): void {
+
   }
 
   get topicId(): FormControl {
@@ -80,16 +85,18 @@ export class RequestSessionFormComponent implements OnInit, AfterViewInit {
   }
 
   requestSession() {
-    // let sessionToRequest: CreateSession = {
-    //   'topicId': 'string',
-    //   'date': string,
-    //   'time': string,
-    //   'location': string,
-    //   'remarks': string,
-    //   'coachId': string,
-    //   'coacheeId': string
-    // }
-    // this.sessionService.requestSession()
+    let coachee: string = localStorage.getItem('uuid')!;
+    let sessionToRequest: CreateSession = {
+      topicId: this.topicId.value,
+      date: this.date.value,
+      time: this.time.value,
+      location: this.location.value,
+      remarks: this.remarks.value,
+      coachId: this.coachId,
+      coacheeId: coachee
+    };
+    console.log(sessionToRequest);
+    this.sessionService.requestSession(sessionToRequest).subscribe();
   }
 
   private initializeDatePicker(): void {
