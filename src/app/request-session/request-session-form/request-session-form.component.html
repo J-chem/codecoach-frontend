@@ -11,10 +11,6 @@
         <div class="row">
           <form class="col s12" [formGroup]="requestSessionForm" (ngSubmit)="onSubmit()">
             <div class="row">
-              <!--              <div class="input-field col s12">-->
-              <!--                <textarea id="topic" class="materialize-textarea" formControlName="topicId"></textarea>-->
-              <!--                <label for="topic">On which topic/subject would you like to have a coaching session?</label>-->
-              <!--              </div>-->
               <div class="input-field col s12">
                 <select id="topic" formControlName="topicId">
                   <option value="" disabled selected>Select a topic</option>
