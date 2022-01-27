@@ -1,17 +1,19 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {SessionService} from "../../service/session.service";
 import DatepickerOptions = M.DatepickerOptions;
-import {Topic} from "../../model/topic";
 import {CreateSession} from "../../model/create-session";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {UserService} from "../../service/user.service";
+import {User} from "../../model/user";
+import {Observable, tap} from "rxjs";
 
 @Component({
   selector: 'app-request-session-form',
   templateUrl: './request-session-form.component.html',
   styleUrls: ['./request-session-form.component.css']
 })
-export class RequestSessionFormComponent implements OnInit, AfterViewInit {
+export class RequestSessionFormComponent implements OnInit {
 
 
   private _requestSessionForm = new FormGroup({
@@ -22,47 +24,23 @@ export class RequestSessionFormComponent implements OnInit, AfterViewInit {
     'remarks': new FormControl('')
   });
 
-  private readonly coachId: string;
   private datePickerElem: any;
-  firstName = 'Emil';
-  lastName = "Noirhomme";
   private timePickerElem: any;
-  topics: Topic[] = [
-    {
-      id: '0dab9a2a-7ea2-11ec-90d6-0242ac120003',
-      topicName: 'BIOLOGY',
-      name: 'fakeName',
-      level :'zero'
-    },
-    {
-      id: 'cab03db4-7e94-11ec-90d6-0242ac120003',
-      topicName: 'MATHEMATICS',
-      name: 'fakeName',
-      level :'zero'
-    }, {
-      id: '44ff86a8-7ea7-11ec-90d6-0242ac120003',
-      topicName: 'JAVA',
-      name: 'fakeName',
-      level :'zero'
-    }];
 
-  constructor(private sessionService: SessionService, private activatedRoute: ActivatedRoute) {
-    this.coachId = this.activatedRoute.snapshot.params['id'];
+  coach$!: Observable<User>;
+
+  constructor(private sessionService: SessionService,
+              private activatedRoute: ActivatedRoute,
+              private userService: UserService,
+              private router: Router) {
+
   }
 
   ngOnInit(): void {
-
-  }
-
-  ngAfterViewInit(): void {
-    setTimeout(() => {
-      this.initializeDatePicker();
-      this.initializeTimePicker()
-    }, 1);
+    this.getCoach();
   }
 
   onSubmit(): void {
-    console.log(this._requestSessionForm.value);
     this.requestSession();
   }
 
@@ -90,7 +68,6 @@ export class RequestSessionFormComponent implements OnInit, AfterViewInit {
     return this._requestSessionForm;
   }
 
-
   requestSession() {
     let coachee: string = localStorage.getItem('uuid')!;
     let sessionToRequest: CreateSession = {
@@ -99,11 +76,20 @@ export class RequestSessionFormComponent implements OnInit, AfterViewInit {
       time: this.time.value,
       location: this.location.value,
       remarks: this.remarks.value,
-      coachId: this.coachId,
+      coachId: this.activatedRoute.snapshot.params['id'],
       coacheeId: coachee
     };
     console.log(sessionToRequest);
-    this.sessionService.requestSession(sessionToRequest).subscribe();
+    this.sessionService.requestSession(sessionToRequest).subscribe(session => {
+      if (session) {
+        this.router.navigate(['profile']).then();
+      }
+    });
+  }
+
+  private initializeSelect(): void {
+    const elements = document.querySelectorAll('select');
+    M.FormSelect.init(elements);
   }
 
   private initializeDatePicker(): void {
@@ -113,7 +99,8 @@ export class RequestSessionFormComponent implements OnInit, AfterViewInit {
       onClose: () => {
         this._requestSessionForm.patchValue({date: this.datePickerElem.toString()});
         this._requestSessionForm.updateValueAndValidity({onlySelf: false, emitEvent: true});
-      }
+      },
+      minDate: new Date(Date.now() + 86400000)
     } as DatepickerOptions);
 
     for (const instance of instances) {
@@ -139,8 +126,15 @@ export class RequestSessionFormComponent implements OnInit, AfterViewInit {
     }
   }
 
-  private getCoach(): void {
-
+  private getCoach() {
+    const coachId = this.activatedRoute.snapshot.params['id'];
+    this.coach$ = this.userService.getUserById(coachId).pipe(tap(() => {
+      setTimeout(() => {
+        this.initializeDatePicker();
+        this.initializeTimePicker();
+        this.initializeSelect();
+      }, 1);
+    }));
   }
 
 }

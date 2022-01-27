@@ -10,7 +10,7 @@
             <div class="input-field col l3 m6 s12">
               <select>
                 <option value="" disabled selected>Choose topic</option>
-                <option *ngFor="let topic of topics$" value="{{i + 1}}">{{topic.name}}</option>
+                <option *ngFor="let topic of topics$" value="{{i + 1}}">{{topic.topicName}}</option>
               </select>
               <label>Filter by Topic</label>
             </div>
@@ -44,8 +44,8 @@
                   <table class="highlight responsive-table">
                     <tbody>
                     <tr *ngFor="let topic of coach.topics">
-                      <td><strong>{{topic.name}}</strong></td>
-                      <td>{{topic.level}}</td>
+                      <td><strong>{{topic.topicName}}</strong></td>
+                      <td>{{topic.topicId}}</td>
                     </tr>
                     </tbody>
                   </table>

@@ -22,7 +22,7 @@ export class RegisterFormComponent implements OnInit, AfterViewInit {
     'email': new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"
     )]),
     'password': new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern("^(?=.*\\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\\w\\d\\s:])([^\\s]){8,16}$")]),
-    'team': new FormControl('', [Validators.required, Validators.minLength(2)]),
+    'team': new FormControl('', [Validators.minLength(2)]),
     'repeat_password': new FormControl('', [Validators.required])
   }, {validators: matchingPasswordDirective});
 
@@ -65,7 +65,7 @@ export class RegisterFormComponent implements OnInit, AfterViewInit {
   register(){
     this.userService.register(this.registerUserForm.value).subscribe(user => {
       if(user) {
-        this.router.navigate(['signin'])
+        this.router.navigate(['signin']).then();
       }
     });
   }

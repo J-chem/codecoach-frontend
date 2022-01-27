@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Coach} from "../model/coach";
 import {CoachOverviewService} from "../service/coach-overview.service";
 import {Topic} from "../model/topic";
 import {Level} from "../model/level";
+import {CoachOverview} from "../model/coach-overview";
 
 @Component({
   selector: 'app-coach-overview',
@@ -10,7 +10,7 @@ import {Level} from "../model/level";
   styleUrls: ['./coach-overview.component.css']
 })
 export class CoachOverviewComponent implements OnInit {
-   coaches$!: Coach[];
+   coaches$!: CoachOverview[];
    topics$!: Topic[];
    levels$!: Level[];
    i = 0;
