@@ -32,8 +32,11 @@
             </div>
             <div class="row">
               <div class="input-field col s12">
-                <input id="location" type="text" class="autocomplete" formControlName="location">
-                <label for="location">Location</label>
+                <select id="location" formControlName="topicId">
+                  <option value="" disabled selected>Select a location</option>
+                  <option value="ONLINE">Online</option>
+                  <option value="FACE_TO_FACE">Face-to-face</option>
+                </select>
               </div>
             </div>
             <div class="row">

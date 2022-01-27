@@ -54,6 +54,18 @@ export class RequestSessionFormComponent implements OnInit, AfterViewInit {
 
   }
 
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.initializeDatePicker();
+      this.initializeTimePicker()
+    }, 1);
+  }
+
+  onSubmit(): void {
+    console.log(this._requestSessionForm.value);
+    this.requestSession();
+  }
+
   get topicId(): FormControl {
     return this._requestSessionForm!.get('topicId') as FormControl;
   }
@@ -78,17 +90,6 @@ export class RequestSessionFormComponent implements OnInit, AfterViewInit {
     return this._requestSessionForm;
   }
 
-  ngAfterViewInit(): void {
-    setTimeout(() => {
-      this.initializeDatePicker();
-      this.initializeTimePicker()
-    }, 1);
-  }
-
-  onSubmit(): void {
-    console.log(this._requestSessionForm.value);
-    this.requestSession();
-  }
 
   requestSession() {
     let coachee: string = localStorage.getItem('uuid')!;
@@ -108,7 +109,7 @@ export class RequestSessionFormComponent implements OnInit, AfterViewInit {
   private initializeDatePicker(): void {
     const elems = document.querySelectorAll('.datepicker');
     const instances = M.Datepicker.init(elems, {
-      format: 'dd/mm/yyyy',
+      format: 'yyyy-mm-dd',
       onClose: () => {
         this._requestSessionForm.patchValue({date: this.datePickerElem.toString()});
         this._requestSessionForm.updateValueAndValidity({onlySelf: false, emitEvent: true});
@@ -136,6 +137,10 @@ export class RequestSessionFormComponent implements OnInit, AfterViewInit {
         this.timePickerElem = instance;
       }
     }
+  }
+
+  private getCoach(): void {
+
   }
 
 }
