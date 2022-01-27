@@ -5,6 +5,7 @@ import {SigninComponent} from "./main/signin/signin.component";
 import {RegisterFormComponent} from "./register-user/register-form/register-form.component";
 import {MyCoachProfileComponent} from "./coach-profile/my-coach-profile/my-coach-profile.component";
 
+
 const routes: Routes = [
   { path: '', component: MainEnComponent },
   { path: 'signin', component: SigninComponent },
@@ -15,5 +16,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
+
 })
 export class AppRoutingModule { }
+
