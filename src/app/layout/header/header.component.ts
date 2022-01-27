@@ -2,6 +2,8 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {MaterializeService} from "../../service/materialize.service";
 import {Observable} from "rxjs";
 import {KeycloakService} from "../../service/keycloak.service";
+import {User} from "../../model/User";
+import {UserService} from "../../service/user.service";
 
 @Component({
   selector: 'app-header',
@@ -12,12 +14,17 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   loggedInUser$!: Observable<string | null>;
 
-  constructor(private materializeService: MaterializeService, private keycloakService: KeycloakService) {
+  user?: User;
+
+  mySubscription: any;
+
+  constructor(private materializeService: MaterializeService, private keycloakService: KeycloakService, private userService: UserService) {
   }
 
   ngOnInit(): void {
     this.loggedInUser$ = this.keycloakService.loggedInUser$;
     setTimeout(() => this.keycloakService.sendSignal(), 1);
+    this.loggedInUser$.subscribe(_ => this.userService.getUserById().subscribe(user => this.user = user));
   }
 
   logout() {
@@ -28,5 +35,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.materializeService.autoInit();
   }
+
+
 
 }
