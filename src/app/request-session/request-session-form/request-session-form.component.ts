@@ -13,9 +13,6 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class RequestSessionFormComponent implements OnInit, AfterViewInit {
 
-  firstName = 'Emil';
-  lastName = "Noirhomme";
-  private coachId: string;
 
   private _requestSessionForm = new FormGroup({
     'topicId': new FormControl('', [Validators.required]),
@@ -24,19 +21,29 @@ export class RequestSessionFormComponent implements OnInit, AfterViewInit {
     'location': new FormControl('', [Validators.required]),
     'remarks': new FormControl('')
   });
+
+  private readonly coachId: string;
   private datePickerElem: any;
+  firstName = 'Emil';
+  lastName = "Noirhomme";
   private timePickerElem: any;
   topics: Topic[] = [
     {
       id: '0dab9a2a-7ea2-11ec-90d6-0242ac120003',
-      topicName: 'BIOLOGY'
+      topicName: 'BIOLOGY',
+      name: 'fakeName',
+      level :'zero'
     },
     {
       id: 'cab03db4-7e94-11ec-90d6-0242ac120003',
-      topicName: 'MATHEMATICS'
+      topicName: 'MATHEMATICS',
+      name: 'fakeName',
+      level :'zero'
     }, {
       id: '44ff86a8-7ea7-11ec-90d6-0242ac120003',
-      topicName: 'JAVA'
+      topicName: 'JAVA',
+      name: 'fakeName',
+      level :'zero'
     }];
 
   constructor(private sessionService: SessionService, private activatedRoute: ActivatedRoute) {
@@ -66,7 +73,6 @@ export class RequestSessionFormComponent implements OnInit, AfterViewInit {
   get remarks(): FormControl {
     return this._requestSessionForm!.get('remarks') as FormControl;
   }
-
 
   get requestSessionForm(): FormGroup {
     return this._requestSessionForm;
