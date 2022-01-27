@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {CoachOverview} from "../model/coach-overview";
+import {Coach} from "../model/coach";
 import {CoachOverviewService} from "../service/coach-overview.service";
+import {Topic} from "../model/topic";
+import {Level} from "../model/level";
 
 @Component({
   selector: 'app-coach-overview',
@@ -8,21 +10,29 @@ import {CoachOverviewService} from "../service/coach-overview.service";
   styleUrls: ['./coach-overview.component.css']
 })
 export class CoachOverviewComponent implements OnInit {
-   _coaches$!: CoachOverview[];
+   coaches$!: Coach[];
+   topics$!: Topic[];
+   levels$!: Level[];
+   i = 0;
 
   constructor(private coachOverviewService: CoachOverviewService) { }
 
-
-  // get coaches$(): CoachOverview[] {
-  //   return this._coaches$;
-  // }
-
   ngOnInit(): void {
     this.getAllCoaches();
+    this.getAllTopics();
+    this.getAllLevels()
+  }
+
+  getAllLevels(): void{
+    this.coachOverviewService.getAllLevels().subscribe(levels => this.levels$ = levels);
+  }
+
+  getAllTopics(): void{
+    this.coachOverviewService.getAllTopics().subscribe(topics => this.topics$ = topics);
   }
 
   getAllCoaches(): void {
-    this.coachOverviewService.getAllCoaches().subscribe(coaches => this._coaches$ = coaches);
+    this.coachOverviewService.getAllCoaches().subscribe(coaches => this.coaches$ = coaches);
   }
 
 }
