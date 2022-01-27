@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
-import {Coach} from "../model/coach";
+import {CoachOverview} from "../model/coach-overview";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 
@@ -15,7 +15,7 @@ export class CoachOverviewService {
     this.url = `${environment.backendUrl}/users?coach=true`
   }
 
-  getAllCoaches() : Observable<Coach[]>{
-    return this.http.get<Coach[]>(this.url);
+  getAllCoaches() : Observable<CoachOverview[]>{
+    return this.http.get<CoachOverview[]>(this.url);
   }
 }

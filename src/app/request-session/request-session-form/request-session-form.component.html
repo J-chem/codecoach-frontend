@@ -15,7 +15,6 @@
                 <select id="topic" formControlName="topicId">
                   <option value="" disabled selected>Select a topic</option>
                   <option *ngFor="let topic of topics" value="{{topic.id}}">{{topic.topicName}}</option>
-
                 </select>
                 <label for="topic">Session topic</label>
               </div>

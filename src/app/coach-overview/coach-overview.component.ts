@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Coach} from "../model/coach";
+import {CoachOverview} from "../model/coach-overview";
 import {CoachOverviewService} from "../service/coach-overview.service";
 
 @Component({
@@ -8,12 +8,12 @@ import {CoachOverviewService} from "../service/coach-overview.service";
   styleUrls: ['./coach-overview.component.css']
 })
 export class CoachOverviewComponent implements OnInit {
-   _coaches$!: Coach[];
+   _coaches$!: CoachOverview[];
 
   constructor(private coachOverviewService: CoachOverviewService) { }
 
 
-  // get coaches$(): Coach[] {
+  // get coaches$(): CoachOverview[] {
   //   return this._coaches$;
   // }
 
