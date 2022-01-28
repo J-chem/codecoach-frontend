@@ -11,6 +11,8 @@ import {AuthenticationInterceptor} from "./interceptor/authentication.intercepto
 import {RegisterUserModule} from "./register-user/register-user.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CoachProfileModule} from "./coach-profile/coach-profile.module";
+import {ProfileMenuComponent} from "./profile/profile-menu/profile-menu.component";
+import {ProfileModule} from "./profile/profile.module";
 
 
 
@@ -28,7 +30,8 @@ import {CoachProfileModule} from "./coach-profile/coach-profile.module";
     FormsModule,
     ReactiveFormsModule,
     CoacheeProfileModule,
-    CoachProfileModule
+    CoachProfileModule,
+    ProfileModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true

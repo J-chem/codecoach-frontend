@@ -3,13 +3,14 @@ import {RouterModule, Routes} from '@angular/router';
 import {MainEnComponent} from "./main/main-en/main-en.component";
 import {SigninComponent} from "./main/signin/signin.component";
 import {RegisterFormComponent} from "./register-user/register-form/register-form.component";
-import {MyCoachProfileComponent} from "./coach-profile/my-coach-profile/my-coach-profile.component";
+import {UserProfileComponent} from "./profile/user-profile/user-profile.component";
+
 
 const routes: Routes = [
   { path: '', component: MainEnComponent },
   { path: 'signin', component: SigninComponent },
   { path: 'register', component: RegisterFormComponent },
-  { path: 'profile/coach', component: MyCoachProfileComponent}
+  { path: 'profile', component: UserProfileComponent}
 ];
 
 @NgModule({
