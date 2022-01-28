@@ -1,0 +1,109 @@
+<main>
+
+  <div class="row">
+
+    <div class="col s12 m10">
+      <div class="content-container">
+
+        <section class="card-panel grey lighten-5">
+          <h5>Profile Information</h5>
+          <div class="divider"></div>
+          <div class="row">
+            <div class="col l2 m2 s12">
+              <img src="assets/images/profile-picture-coach.jpg" class="responsive-img circle"
+                   alt="Profile Picture">
+            </div>
+            <div class="col l10 m12 s12">
+              <table class="highlight">
+                <tbody>
+                <tr>
+                  <td ><strong>First name</strong></td>
+                  <td>{{selectedUser?.firstName}}</td>
+                </tr>
+                <tr>
+                  <td><strong>Last name</strong></td>
+                  <td>{{selectedUser?.lastName}}</td>
+                </tr>
+                <tr>
+                  <td><strong>Email</strong></td>
+                  <td>{{selectedUser?.email}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section class="card-panel grey lighten-5">
+          <div class="right">
+            <a class="waves-effect waves-light btn-large btn-floating teal lighten-3"><i
+              class="material-icons left">edit</i>Edit</a>
+          </div>
+          <h5>Coach Information</h5>
+          <div class="divider"></div>
+          <div class="row">
+            <div class="col l12 m12 s12">
+              <table class="highlight">
+                <tbody>
+<!--                <tr>-->
+<!--                  <td><strong>Coach XP</strong></td>-->
+<!--                  <td>-->
+<!--                    <div class="center">-->
+<!--                                            <span class="new badge teal lighten-3 teal-text text-darken-3"-->
+<!--                                                  data-badge-caption="(Silver)">300/500</span>-->
+<!--                    </div>-->
+<!--                    <div class="progress teal">-->
+<!--                      <div class="determinate" style="width: 60%"></div>-->
+<!--                    </div>-->
+<!--                  </td>-->
+<!--                </tr>-->
+                <tr>
+                  <td><strong>Introduction</strong></td>
+                  <td>
+                    {{ selectedUser?.coachInfo?.introduction}}
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Availability</strong></td>
+                  <td>
+                    {{ selectedUser?.coachInfo?.availability}}
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <section class="card-panel grey lighten-5">
+          <div class="right">
+            <a class="waves-effect waves-light btn-large btn-floating teal lighten-3"><i
+              class="material-icons left">edit</i>Edit</a>
+          </div>
+          <h5>Coaching topics</h5>
+          <div class="divider"></div>
+          <div class="row">
+            <div class="col s12">
+              <table class="highlight">
+                <tbody>
+                <tr *ngFor="let cit of selectedUser?.coachInfo?.coachInfoTopicList">
+                  <td><strong>{{ cit.topic.topicName | titlecase }}</strong></td>
+                  <td>
+                    <strong>{{ cit.expertise | titlecase}}</strong>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+</main>
