@@ -6,6 +6,7 @@ import * as JWT from 'jwt-decode';
 import {KeycloakToken} from "../keycloak/keycloak-token";
 import {KeycloakUserInfoService} from "./keycloak-user-info.service";
 import {KeycloakUserInfo} from "../keycloak/keycloak-user-info";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,9 @@ export class KeycloakService {
 
   constructor(
     private httpKeycloakService: SignInService,
-    private keycloakUserInfoService: KeycloakUserInfoService) {
+    private keycloakUserInfoService: KeycloakUserInfoService,
+    private route: Router
+    ) {
   }
 
   get loggedInUser$(): Observable<string | null> {
@@ -35,7 +38,13 @@ export class KeycloakService {
 
   logIn(loginData: any): Observable<KeycloakTokenResponse> {
     return this.httpKeycloakService.signIn(loginData)
-      .pipe(tap(response => this.setToken(response.access_token)))
+      .pipe(tap(response => {
+        this.setToken(response.access_token);
+        setTimeout(() => {
+          this.logout();
+          this.route.navigateByUrl("/").then();
+        }, 3599000);
+      }))
       .pipe(tap(response => {
         this.keycloakUserInfoService.getUserinfo(response.access_token)
           .subscribe(userInfo => this.setId(userInfo.sub));
@@ -45,6 +54,7 @@ export class KeycloakService {
   logout(): void {
     localStorage.removeItem(this.token_key_name);
     localStorage.removeItem(this.uuid);
+    alert("logged out");
     this.sendSignal();
   }
 

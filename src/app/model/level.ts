@@ -1,3 +1,4 @@
 export interface Level{
-  expertise: string;
+  "id": number,
+  "expertise": string;
 }

@@ -6,7 +6,7 @@
         <li><a href="/">Home</a></li>
         <li><a href="#">About us</a></li>
         <li><a href="#">Contact</a></li>
-        <span *ngIf="loggedInUser$ | async as loggedInUser; else notLoggedIn" class="navbar-text">
+        <span *ngIf="loggedInUser$ | async; else notLoggedIn" class="navbar-text">
         <li><a routerLink="/" class="waves-effect waves-light yellow darken-2 btn black-text" (click)="logout()">Sign out<i
           class="material-icons right">person</i></a></li>
         </span>
@@ -29,7 +29,7 @@
       </ul>
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
-    <div *ngIf="loggedInUser$ | async as loggedInUser" class="nav-content yellow darken-2">
+    <div *ngIf="loggedInUser$ | async" class="nav-content yellow darken-2">
       <div class="container">
         <ul class="tabs tabs-transparent">
           <li class="tab"><a class="black-text" routerLink="/profile">My Profile</a></li>
