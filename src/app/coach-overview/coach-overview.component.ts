@@ -58,7 +58,7 @@ export class CoachOverviewComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(JSON.stringify(this.topicForm.value))
-    console.log(JSON.stringify(this.levelForm.value))
+    // console.log(JSON.stringify(this.topicForm.value))
+    // console.log(JSON.stringify(this.levelForm.value))
   }
 }
