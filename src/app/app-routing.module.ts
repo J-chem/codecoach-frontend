@@ -4,13 +4,19 @@ import {MainEnComponent} from "./main/main-en/main-en.component";
 import {SigninComponent} from "./main/signin/signin.component";
 import {RegisterFormComponent} from "./register-user/register-form/register-form.component";
 import {UserProfileComponent} from "./profile/user-profile/user-profile.component";
+import {MyCoachProfileComponent} from "./coach-profile/my-coach-profile/my-coach-profile.component";
+import {ApplyBecomeACoachComponent} from "./coachee-profile/apply-become-a-coach/apply-become-a-coach.component";
 
 
 const routes: Routes = [
   { path: '', component: MainEnComponent },
   { path: 'signin', component: SigninComponent },
   { path: 'register', component: RegisterFormComponent },
-  { path: 'profile', component: UserProfileComponent}
+  { path: 'profile', component: UserProfileComponent, children: [
+      {path: 'become-a-coach', component: ApplyBecomeACoachComponent},
+      { path: 'coach', component: MyCoachProfileComponent}
+    ]}
+
 ];
 
 @NgModule({

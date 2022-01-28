@@ -16,15 +16,19 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   user?: User;
 
-  mySubscription: any;
 
-  constructor(private materializeService: MaterializeService, private keycloakService: KeycloakService, private userService: UserService) {
+  constructor(private materializeService: MaterializeService, private keycloakService: KeycloakService) {
   }
 
   ngOnInit(): void {
     this.loggedInUser$ = this.keycloakService.loggedInUser$;
     setTimeout(() => this.keycloakService.sendSignal(), 1);
-    this.loggedInUser$.subscribe(_ => this.userService.getUserById().subscribe(user => this.user = user));
+    console.log(this.loggedInUser$);
+    // this.loggedInUser$.subscribe(loggedInUser => {
+    //   if (loggedInUser){
+    //     this.userService.getUserById().subscribe(user => this.user = user)
+    //   }
+    // });
   }
 
   logout() {

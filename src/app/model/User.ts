@@ -7,5 +7,5 @@ export interface User{
   "password": string,
   "team": string,
   "isCoach": boolean,
-  "coachInfoDto": CoachInfo
+  "coachInfo": CoachInfo
 }

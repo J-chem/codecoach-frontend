@@ -2,19 +2,7 @@
 
   <div class="row">
 
-    <div class="col s2 m2">
-      <div class="content-container">
-        <h6>My Coach Profile</h6>
-        <div class="collection">
-          <a href="#" class="collection-item black-text active teal lighten-3">Profile Information</a>
-          <a href="#" class="collection-item grey-text text-darken-2">Coaching sessions<span
-            class="btn-floating btn-small teal lighten-3 pulse">1</span></a>
-          <a href="#" class="collection-item grey-text text-darken-2">Request profile change</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="col s10 m10">
+    <div class="col s12 m10">
       <div class="content-container">
 
         <section class="card-panel grey lighten-5">
@@ -59,32 +47,28 @@
             <div class="col l12 m12 s12">
               <table class="highlight">
                 <tbody>
-                <tr>
-                  <td><strong>Coach XP</strong></td>
-                  <td>
-                    <div class="center">
-                                            <span class="new badge teal lighten-3 teal-text text-darken-3"
-                                                  data-badge-caption="(Silver)">300/500</span>
-                    </div>
-                    <div class="progress teal">
-                      <div class="determinate" style="width: 60%"></div>
-                    </div>
-                  </td>
-                </tr>
+<!--                <tr>-->
+<!--                  <td><strong>Coach XP</strong></td>-->
+<!--                  <td>-->
+<!--                    <div class="center">-->
+<!--                                            <span class="new badge teal lighten-3 teal-text text-darken-3"-->
+<!--                                                  data-badge-caption="(Silver)">300/500</span>-->
+<!--                    </div>-->
+<!--                    <div class="progress teal">-->
+<!--                      <div class="determinate" style="width: 60%"></div>-->
+<!--                    </div>-->
+<!--                  </td>-->
+<!--                </tr>-->
                 <tr>
                   <td><strong>Introduction</strong></td>
                   <td>
-<!--                    My name is Antoine and I'm currently in the 4th grade. I'm mostly interested in-->
-<!--                    science and math. My strength as a coach is to have a lot of patience while-->
-<!--                    coaching. Feel free to contact me for a first coaching session.-->
-                    {{ selectedUser?.coachInfoDto?.introduction}}
+                    {{ selectedUser?.coachInfo?.introduction}}
                   </td>
                 </tr>
                 <tr>
                   <td><strong>Availability</strong></td>
                   <td>
-<!--                    I'm usually available on wednesday and Friday after schoool between 16 and 17h.-->
-                    {{ selectedUser?.coachInfoDto?.availability}}
+                    {{ selectedUser?.coachInfo?.availability}}
                   </td>
                 </tr>
                 </tbody>
@@ -106,9 +90,8 @@
             <div class="col s12">
               <table class="highlight">
                 <tbody>
-                <tr *ngFor="let cit of selectedUser?.coachInfoDto?.coachInfoTopicDtoList">
-<!--                  <td><strong>Mathematics {{ selectedUser && selectedUser.coachInfoDto.coachInfoTopicDtoList.length ? selectedUser.coachInfoDto.coachInfoTopicDtoList[0].topicDto.topicName : '' }}</strong></td>-->
-                  <td><strong>{{ cit.topicDto.topicName | titlecase }}</strong></td>
+                <tr *ngFor="let cit of selectedUser?.coachInfo?.coachInfoTopicList">
+                  <td><strong>{{ cit.topic.topicName | titlecase }}</strong></td>
                   <td>
                     <strong>{{ cit.expertise | titlecase}}</strong>
                   </td>

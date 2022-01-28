@@ -1,6 +1,6 @@
 import {Topic} from "./Topic";
 
 export interface CoachInfoTopic{
-  "topicDto": Topic,
+  "topic": Topic,
   "expertise": string
 }
