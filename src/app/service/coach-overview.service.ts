@@ -5,6 +5,7 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Level} from "../model/level";
 import {TopicWithId} from "../model/topic-with-id";
+import {CoachOverview} from "../model/coach-overview";
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,8 @@ export class CoachOverviewService {
     this.url = environment.backendUrl;
   }
 
-  getAllCoaches() : Observable<Coach[]>{
-    return this.http.get<Coach[]>(`${this.url}/users?coach=true`);
+  getAllCoaches() : Observable<CoachOverview[]>{
+    return this.http.get<CoachOverview[]>(`${this.url}/users?coach=true`);
   }
 
   getAllTopics() : Observable<TopicWithId[]>{

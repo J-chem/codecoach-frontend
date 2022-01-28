@@ -1,7 +1,8 @@
 import {TopicWithExpertise} from "./topic-with-expertise";
 
 
-export interface Coach{
+export interface CoachOverview {
+  "id": string,
   "firstName": string,
   "lastName": string,
   "email": string,

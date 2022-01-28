@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {catchError, Observable, of} from "rxjs";
-import {User} from "../model/User";
+import {User} from "../model/user";
 import {environment} from "../../environments/environment";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {KeycloakService} from "./keycloak.service";
+import {CreateUser} from "../model/create-user";
 
 
 @Injectable({
@@ -11,20 +11,19 @@ import {KeycloakService} from "./keycloak.service";
 })
 export class UserService {
 
-  private _url: string;
+  private url: string;
   httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
 
 
   constructor(private http: HttpClient) {
-    this._url = `${environment.backendUrl}/users`;
+    this.url = `${environment.backendUrl}/users`;
   }
 
-  register(user: User): Observable<User> {
-    return this.http.post<User>(this._url, user, this.httpOptions)
+  register(user: CreateUser): Observable<User> {
+    return this.http.post<User>(this.url, user, this.httpOptions)
       .pipe(
         catchError(this.handleError<User>('register'))
-      )
-      ;
+      );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
@@ -37,7 +36,11 @@ export class UserService {
   }
 
   updateUserToCoach(): Observable<any> {
-    const url = `${this._url}/${localStorage.getItem('uuid')}/become-a-coach`;
+    const url = `${this.url}/${localStorage.getItem('uuid')}/become-a-coach`;
     return this.http.post<any>(url, null);
+  }
+
+  getUserById(userId: string): Observable<User> {
+    return this.http.get<User>(`${this.url}/${userId}`);
   }
 }

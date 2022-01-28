@@ -10,6 +10,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthenticationInterceptor} from "./interceptor/authentication.interceptor";
 import {RegisterUserModule} from "./register-user/register-user.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { RequestSessionModule } from './request-session/request-session.module';
 import { CoachOverviewComponent } from './coach-overview/coach-overview.component';
 
 
@@ -27,6 +28,8 @@ import { CoachOverviewComponent } from './coach-overview/coach-overview.componen
     HttpClientModule,
     RegisterUserModule,
     FormsModule,
+    ReactiveFormsModule,
+    RequestSessionModule,
     ReactiveFormsModule,
     CoacheeProfileModule
   ],

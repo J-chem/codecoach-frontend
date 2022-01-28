@@ -1,11 +1,11 @@
-import {AfterViewInit, Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {Coach} from "../model/coach";
+import { Component, OnInit } from '@angular/core';
 import {CoachOverviewService} from "../service/coach-overview.service";
 import {Level} from "../model/level";
 import {TopicWithId} from "../model/topic-with-id";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {Observable, tap} from "rxjs";
 import {MaterializeService} from "../service/materialize.service";
+import {CoachOverview} from "../model/coach-overview";
 
 @Component({
   selector: 'app-coach-overview',
@@ -14,31 +14,28 @@ import {MaterializeService} from "../service/materialize.service";
 })
 
 export class CoachOverviewComponent implements OnInit {
+
   topicForm = this.formBuilder.group({
     topicControl: ''
   });
-
   levelForm = this.formBuilder.group({
     levelControl: ''
   });
-  coaches$!: Coach[];
-
+  coaches$!: CoachOverview[];
   topics$!: Observable<TopicWithId[]>;
   levels$!: Observable<Level[]>;
 
 
   constructor(
     private coachOverviewService: CoachOverviewService,
-    private formBuilder: FormBuilder,
-    private materializeService: MaterializeService
+    private formBuilder: FormBuilder
   ) {
   }
 
   ngOnInit(): void {
     this.getAllCoaches();
     this.getAllTopics();
-    this.getAllLevels();
-
+    this.getAllLevels()
   }
 
   getAllLevels(): void {
