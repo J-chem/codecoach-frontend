@@ -30,7 +30,7 @@
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
 
-    <div  class="nav-content yellow darken-2">
+    <div *ngIf="loggedInUser$ | async" class="nav-content yellow darken-2">
       <div class="container">
         <ul class="tabs tabs-transparent">
           <li class="tab"><a class="black-text" routerLink="/profile">My Profile</a></li>
