@@ -1,4 +1,4 @@
-import {Topic} from "./topic";
+import {CoachInfoTopic} from "./coach-info-topic";
 
 
 export interface CoachOverview {
@@ -6,5 +6,5 @@ export interface CoachOverview {
   "firstName": string,
   "lastName": string,
   "email": string,
-  "topics": Topic[]
+  "topics": CoachInfoTopic[]
 }
