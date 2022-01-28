@@ -15,8 +15,8 @@ export class SigninComponent implements OnInit {
   isError: boolean = false;
 
   signInForm: FormGroup = this.formBuilder.group({
-    email: ['najima@dwaynians.com', [Validators.required]],
-    password: ['password', [Validators.required]]
+    email: ['', [Validators.required]],
+    password: ['', [Validators.required]]
   });
 
   get controls(): any {
