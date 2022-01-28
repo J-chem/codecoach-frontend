@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {CoachOverviewService} from "../service/coach-overview.service";
 import {Expertise} from "../model/expertise";
-import {Topic} from "../model/Topic";
 import {FormBuilder} from "@angular/forms";
 import {Observable, tap} from "rxjs";
 import {CoachOverview} from "../model/coach-overview";
+import {Topic} from "../model/topic";
 
 @Component({
   selector: 'app-coach-overview',

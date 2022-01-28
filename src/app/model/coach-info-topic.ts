@@ -1,4 +1,5 @@
-import {Topic} from "./Topic";
+import {Topic} from "./topic";
+
 
 export interface CoachInfoTopic {
   'coachInfoTopicId': string,

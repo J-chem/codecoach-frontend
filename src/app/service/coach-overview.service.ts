@@ -4,7 +4,8 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Expertise} from "../model/expertise";
 import {CoachOverview} from "../model/coach-overview";
-import {Topic} from "../model/Topic";
+import {Topic} from "../model/topic";
+
 
 @Injectable({
   providedIn: 'root'
