@@ -128,7 +128,8 @@ export class RequestSessionFormComponent implements OnInit {
 
   private getCoach() {
     const coachId = this.activatedRoute.snapshot.params['id'];
-    this.coach$ = this.userService.getUserById(coachId).pipe(tap(() => {
+    this.coach$ = this.userService.getUserById(coachId).pipe(tap((user) => {
+      console.log(user);
       setTimeout(() => {
         this.initializeDatePicker();
         this.initializeTimePicker();

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CoachOverviewService} from "../service/coach-overview.service";
-import {Level} from "../model/level";
+import {Expertise} from "../model/expertise";
 import {Topic} from "../model/Topic";
 import {FormBuilder} from "@angular/forms";
 import {Observable, tap} from "rxjs";
@@ -22,7 +22,7 @@ export class CoachOverviewComponent implements OnInit {
   });
   coaches$!: CoachOverview[];
   topics$!: Observable<Topic[]>;
-  levels$!: Observable<Level[]>;
+  levels$!: Observable<Expertise[]>;
 
 
   constructor(

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
-import {Level} from "../model/level";
+import {Expertise} from "../model/expertise";
 import {CoachOverview} from "../model/coach-overview";
 import {Topic} from "../model/Topic";
 
@@ -25,7 +25,7 @@ export class CoachOverviewService {
     return this.http.get<Topic[]>(`${this.url}/topics`);
   }
 
-  getAllLevels() : Observable<Level[]> {
-    return this.http.get<Level[]>(`${this.url}/levels`);
+  getAllLevels() : Observable<Expertise[]> {
+    return this.http.get<Expertise[]>(`${this.url}/levels`);
   }
 }
