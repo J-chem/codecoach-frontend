@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {MaterializeService} from "../../service/materialize.service";
 import {UserService} from "../../service/user.service";
-import {User} from "../../model/User";
+import {User} from "../../model/user";
 
 @Component({
   selector: 'app-my-coach-profile',
@@ -29,7 +29,7 @@ export class MyCoachProfileComponent implements OnInit, AfterViewInit {
   }
 
   getUserById(): void{
-    this.userService.getUserById().subscribe(user => {
+    this.userService.getLoggedInUser().subscribe(user => {
       this.selectedUser = user
       console.log(user)
     });

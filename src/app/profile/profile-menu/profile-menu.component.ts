@@ -1,9 +1,8 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {MaterializeService} from "../../service/materialize.service";
 import {Observable} from "rxjs";
-import {User} from "../../model/User";
+import {User} from "../../model/user";
 import {KeycloakService} from "../../service/keycloak.service";
-import {UserService} from "../../service/user.service";
 
 @Component({
   selector: 'app-profile-menu',
