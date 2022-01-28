@@ -11,7 +11,7 @@ const routes: Routes = [
   {path: 'signin', component: SigninComponent},
   {path: 'register', component: RegisterFormComponent},
   {path: 'find-a-coach', component: CoachOverviewComponent},
-  {path: 'find-a-coach/request-a-session/:id', component: RequestSessionFormComponent}
+  {path: 'request-a-session/:id', component: RequestSessionFormComponent}
 ];
 
 @NgModule({
