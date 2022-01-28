@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CoachOverviewService} from "../service/coach-overview.service";
 import {Level} from "../model/level";
-import {TopicWithId} from "../model/topic-with-id";
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {Topic} from "../model/Topic";
+import {FormBuilder} from "@angular/forms";
 import {Observable, tap} from "rxjs";
-import {MaterializeService} from "../service/materialize.service";
 import {CoachOverview} from "../model/coach-overview";
 
 @Component({
@@ -22,7 +21,7 @@ export class CoachOverviewComponent implements OnInit {
     levelControl: ''
   });
   coaches$!: CoachOverview[];
-  topics$!: Observable<TopicWithId[]>;
+  topics$!: Observable<Topic[]>;
   levels$!: Observable<Level[]>;
 
 

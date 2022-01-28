@@ -1,4 +1,4 @@
-export interface TopicWithId {
+export interface Topic {
   "id": number,
   "topicName": string
 }

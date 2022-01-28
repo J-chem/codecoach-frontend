@@ -59,9 +59,9 @@
                   <div class="card-content">
                     <table class="highlight responsive-table">
                       <tbody>
-                      <tr *ngFor="let topic of coach.topics">
-                        <td><strong>{{topic.name}}</strong></td>
-                        <td>{{topic.level}}</td>
+                      <tr *ngFor="let info of coach.topics">
+                        <td><strong>{{info.topic}}</strong></td>
+                        <td>{{info.expertise}}</td>
                       </tr>
                       </tbody>
                     </table>
