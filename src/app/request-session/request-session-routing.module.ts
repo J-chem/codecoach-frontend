@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {RequestSessionFormComponent} from "./request-session-form/request-session-form.component";
 
 const routes: Routes = [
-  {path: 'request-a-session/:id', component: RequestSessionFormComponent}
+
 ];
 
 @NgModule({
