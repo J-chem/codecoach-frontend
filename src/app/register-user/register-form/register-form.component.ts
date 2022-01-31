@@ -19,8 +19,8 @@ export class RegisterFormComponent implements OnInit, AfterViewInit {
   }
 
   registerUserForm = new FormGroup({
-    'firstName': new FormControl('', [Validators.required, Validators.minLength(3)]),
-    'lastName': new FormControl('', [Validators.required, Validators.minLength(3)]),
+    'firstName': new FormControl('', [Validators.required, Validators.minLength(2)]),
+    'lastName': new FormControl('', [Validators.required, Validators.minLength(2)]),
     'email': new FormControl('', {validators: [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")],
       asyncValidators: [this.uniqueUserEmailValidator.validate.bind(this.uniqueUserEmailValidator)], updateOn: 'blur'}),
     'password': new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern("^(?=.*\\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\\w\\d\\s:])([^\\s]){8,16}$")]),

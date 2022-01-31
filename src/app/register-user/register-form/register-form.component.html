@@ -54,11 +54,11 @@
 
               <div class="row right-align"
                    *ngIf="(firstName.errors?.['minlength' ] || firstName.errors?.['required'])  && !firstName.pristine">
-                <p class="invalid-message">Your <strong>first name</strong> must be at least 3 characters long.</p>
+                <p class="invalid-message">Your <strong>first name</strong> must be at least 2 characters long.</p>
               </div>
               <div class="row right-align"
                    *ngIf="(lastName.errors?.['minlength' ] || lastName.errors?.['required'])  && !lastName.pristine">
-                <p class="invalid-message">Your <strong>last name</strong> must be at least 3 characters long.</p>
+                <p class="invalid-message">Your <strong>last name</strong> must be at least 2 characters long.</p>
               </div>
               <div class="row right-align"
                    *ngIf="(team.errors?.['minlength' ])  && !team.pristine">
