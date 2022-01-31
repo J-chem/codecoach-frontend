@@ -3,8 +3,8 @@ import {CoachOverviewService} from "../service/coach-overview.service";
 import {Expertise} from "../model/expertise";
 import {FormBuilder} from "@angular/forms";
 import {Observable, tap} from "rxjs";
-import {CoachOverview} from "../model/coach-overview";
 import {Topic} from "../model/topic";
+import {User} from "../model/user";
 
 @Component({
   selector: 'app-coach-overview',
@@ -20,7 +20,7 @@ export class CoachOverviewComponent implements OnInit {
   levelForm = this.formBuilder.group({
     levelControl: ''
   });
-  coaches$!: CoachOverview[];
+  coaches$!: User[];
   topics$!: Observable<Topic[]>;
   levels$!: Observable<Expertise[]>;
 

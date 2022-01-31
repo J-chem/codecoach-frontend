@@ -5,6 +5,7 @@ import {environment} from "../../environments/environment";
 import {Expertise} from "../model/expertise";
 import {CoachOverview} from "../model/coach-overview";
 import {Topic} from "../model/topic";
+import {User} from "../model/user";
 
 
 @Injectable({
@@ -18,8 +19,8 @@ export class CoachOverviewService {
     this.url = environment.backendUrl;
   }
 
-  getAllCoaches() : Observable<CoachOverview[]>{
-    return this.http.get<CoachOverview[]>(`${this.url}/users?coach=true`);
+  getAllCoaches() : Observable<User[]>{
+    return this.http.get<User[]>(`${this.url}/users?coach=true`);
   }
 
   getAllTopics() : Observable<Topic[]>{
