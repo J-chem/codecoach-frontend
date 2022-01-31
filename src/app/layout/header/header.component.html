@@ -4,8 +4,6 @@
       <a id="logo-container" href="/" class="brand-logo">CodeCoach</a>
       <ul class="right hide-on-med-and-down">
         <li><a href="/">Home</a></li>
-        <li><a href="#">About us</a></li>
-        <li><a href="#">Contact</a></li>
         <span *ngIf="loggedInUser$ | async; else notLoggedIn" class="navbar-text">
         <li><a routerLink="/" class="waves-effect waves-light yellow darken-2 btn black-text" (click)="logout()">Sign out<i
           class="material-icons right">person</i></a></li>
