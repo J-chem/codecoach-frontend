@@ -10,14 +10,16 @@
       <div class="col l3 s12">
         <h5 class="black-text">Navigation</h5>
         <ul>
-          <li><a class="grey-text text-darken-3" href="#"><i class="tiny material-icons">chevron_right</i>Home</a>
+          <ng-container *ngIf="loggedInUser$ | async; else notLoggedIn">
+          </ng-container>
+          <li><a class="grey-text text-darken-3" routerLink="/"><i class="tiny material-icons">chevron_right</i>Home</a>
           </li>
-          <li><a class="grey-text text-darken-3" href="#"><i class="tiny material-icons">chevron_right</i>Sign
-            in / Register</a></li>
-          <li><a class="grey-text text-darken-3" href="#"><i class="tiny material-icons">chevron_right</i>Contact</a>
-          </li>
-          <li><a class="grey-text text-darken-3" href="#"><i class="tiny material-icons">chevron_right</i>About
-            us</a></li>
+          <ng-template #notLoggedIn>
+            <li><a class="grey-text text-darken-3" routerLink="/signin"><i class="tiny material-icons">chevron_right</i>Sign
+              in</a></li>
+            <li><a class="grey-text text-darken-3" routerLink="/register"><i class="tiny material-icons">chevron_right</i>Register</a>
+            </li>
+          </ng-template>
         </ul>
       </div>
     </div>
