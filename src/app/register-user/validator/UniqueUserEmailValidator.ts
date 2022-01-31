@@ -10,8 +10,8 @@ export class UniqueUserEmailValidator implements AsyncValidator {
   validate(control: AbstractControl): Observable<ValidationErrors | null> {
     console.log(`UniqueUserEmailValidator validate`);
     return this.userService.isUserEmailTaken(control.value).pipe(
-      tap(isTaken => console.log(isTaken)),
-      map(isTaken => (!isTaken ? { uniqueUserEmail: false } : null))
+      tap(isTaken => console.log('is taken: ' + isTaken)),
+      map(isTaken => (isTaken ? { uniqueUserEmail: true } : null))
     );
   }
 }
