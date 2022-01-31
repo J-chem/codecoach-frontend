@@ -69,12 +69,16 @@
                 <p class="invalid-message">Please enter a valid <strong>email</strong>.</p>
               </div>
               <div class="row right-align"
-                   *ngIf="(password.errors?.['minlength' ] || password.errors?.['required'] || password.errors?.['pattern'])  && !password.pristine">
+                   *ngIf="(email.errors?.['uniqueUserEmail']) && !email.pristine">
+                <p class="invalid-message">This <strong>email address</strong> is already used.</p>
+              </div>
+              <div class="row right-align"
+                   *ngIf="(password.errors?.['minlength' ] || password.errors?.['required'] || password.errors?.['pattern']) && !password.pristine">
                 <p class="invalid-message">Your <strong>password</strong> must contain 8 characters, 1 uppercase, 1
                   lowercase and 1 special character.</p>
               </div>
               <div class="row right-align"
-                   *ngIf="(repeat_password.errors?.['required'] || registerUserForm.errors?.['notMatchingPassword'])  && !repeat_password.pristine">
+                   *ngIf="(repeat_password.errors?.['required'] || registerUserForm.errors?.['notMatchingPassword']) && !repeat_password.pristine">
                 <p class="invalid-message">Your <strong>password</strong> doesn't match.</p>
               </div>
             </form>

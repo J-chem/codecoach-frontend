@@ -4,6 +4,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {matchingPasswordDirective} from "../validator/matching-password.directive";
 import {UserService} from "../../service/user.service";
 import {Router} from "@angular/router";
+import {UniqueUserEmailValidator} from "../validator/UniqueUserEmailValidator";
 
 
 @Component({
@@ -13,13 +14,15 @@ import {Router} from "@angular/router";
 })
 export class RegisterFormComponent implements OnInit, AfterViewInit {
 
-  constructor(private materializeService: MaterializeService, private userService: UserService, private router: Router) {
+  constructor(private materializeService: MaterializeService, private userService: UserService, private router: Router,
+              private uniqueUserEmailValidator: UniqueUserEmailValidator) {
   }
 
   registerUserForm = new FormGroup({
     'firstName': new FormControl('', [Validators.required, Validators.minLength(3)]),
     'lastName': new FormControl('', [Validators.required, Validators.minLength(3)]),
-    'email': new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
+    'email': new FormControl('', {validators: [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")],
+      asyncValidators: [this.uniqueUserEmailValidator.validate.bind(this.uniqueUserEmailValidator)], updateOn: 'blur'}),
     'password': new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern("^(?=.*\\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\\w\\d\\s:])([^\\s]){8,16}$")]),
     'team': new FormControl('', [Validators.minLength(2)]),
     'repeat_password': new FormControl('', [Validators.required])
