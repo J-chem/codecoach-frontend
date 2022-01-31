@@ -54,7 +54,10 @@ export class CoachOverviewComponent implements OnInit {
   }
 
   getAllCoaches(): void {
-    this.coachOverviewService.getAllCoaches().subscribe(coaches => this.coaches$ = coaches);
+    this.coachOverviewService.getAllCoaches().subscribe(coaches => {
+      this.coaches$ = coaches
+      console.log(coaches)
+    });
   }
 
   onSubmit() {
