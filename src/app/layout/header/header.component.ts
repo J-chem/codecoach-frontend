@@ -3,6 +3,7 @@ import {MaterializeService} from "../../service/materialize.service";
 import {Observable} from "rxjs";
 import {KeycloakService} from "../../service/keycloak.service";
 import {User} from "../../model/user";
+import {UserService} from "../../service/user.service";
 
 @Component({
   selector: 'app-header',
@@ -16,16 +17,16 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   user?: User;
 
 
-  constructor(private materializeService: MaterializeService, private keycloakService: KeycloakService) {
+  constructor(private materializeService: MaterializeService, private keycloakService: KeycloakService, private userService: UserService) {
   }
 
   ngOnInit(): void {
     this.loggedInUser$ = this.keycloakService.loggedInUser$;
     setTimeout(() => this.keycloakService.sendSignal(), 1);
-    console.log(this.loggedInUser$);
+    // console.log(this.loggedInUser$);
     // this.loggedInUser$.subscribe(loggedInUser => {
     //   if (loggedInUser){
-    //     this.userService.getUserById().subscribe(user => this.user = user)
+    //     this.userService.getLoggedInUser().subscribe(user => this.user = user)
     //   }
     // });
   }
