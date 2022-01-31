@@ -21,14 +21,15 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    console.log('CAAAALL');
     this.loggedInUser$ = this.keycloakService.loggedInUser$;
     setTimeout(() => this.keycloakService.sendSignal(), 1);
-    // console.log(this.loggedInUser$);
-    // this.loggedInUser$.subscribe(loggedInUser => {
-    //   if (loggedInUser){
-    //     this.userService.getLoggedInUser().subscribe(user => this.user = user)
-    //   }
-    // });
+    console.log(this.loggedInUser$);
+    this.loggedInUser$.subscribe(loggedInUser => {
+      if (loggedInUser){
+        this.userService.getLoggedInUser().subscribe(user => this.user = user)
+      }
+    });
   }
 
   logout() {
