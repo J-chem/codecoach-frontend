@@ -52,4 +52,10 @@ export class UserService {
       catchError(this.handleError<User>('getUser'))
     );
   }
+
+  isUserEmailTaken(userEmail: string): Observable<boolean> {
+    console.log(`isUserEmailTaken ${userEmail}`);
+    const url = `${this.url}/useremailavailability`
+    return this.http.post<boolean>(url, userEmail);
+  }
 }
