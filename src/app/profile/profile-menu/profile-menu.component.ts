@@ -22,8 +22,22 @@ export class ProfileMenuComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.loggedInUser$ = this.keycloakService.loggedInUser$;
+
     setTimeout(() => this.keycloakService.sendSignal(), 1);
-    this.loggedInUser$.subscribe(_ => this.userService.getUserById(''));
+    console.log(localStorage.getItem('uuid'));
+
+    // this.loggedInUser$.subscribe( result =>{
+    //   this.something = result;
+    //   console.log(result);
+    //   if (result){
+    //     this.user = this.userService.getUserById(localStorage.getItem('uuid'));
+    //   }
+    // });
+    // this.loggedInUser$.subscribe(loggedInUser => {
+    //   if (loggedInUser){
+    //     this.userService.getLoggedInUser().subscribe(user => this.user = user)
+    //   }
+    // });
   }
 
   ngAfterViewInit() {
