@@ -4,10 +4,10 @@
     <div class="content-container">
       <h6>My Profile</h6>
       <div class="collection">
-        <a href="#" class="collection-item grey-text text-darken-2">Profile Information</a>
+        <a href="#" class="collection-item grey-text text-darken-2" routerLink="/profile">Profile Information</a>
         <a href="#" class="collection-item grey-text text-darken-2">Coaching sessions</a>
-        <a *ngIf="!user?.isCoach" routerLink="become-a-coach" class="collection-item black-text yellow darken-2">Apply to become a coach</a>
-        <a *ngIf="user?.isCoach" routerLink="become-a-coach" class="collection-item black-text teal lighten-3">Request Profile Change</a>
+        <a *ngIf="!user?.isCoach" routerLink="become-a-coach" class="collection-item black-text" [ngClass]="location == '/profile' ? 'yellow darken-2' : 'teal lighten-3'">Apply to become a coach</a>
+        <a *ngIf="user?.isCoach" routerLink="become-a-coach" class="collection-item black-text" [ngClass]="location == '/profile' ? 'yellow darken-2' : 'teal lighten-3'">Request Profile Change</a>
       </div>
     </div>
   </div>

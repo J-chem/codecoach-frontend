@@ -18,26 +18,15 @@ export class ProfileMenuComponent implements OnInit, AfterViewInit {
 
   something?: any;
 
+  location?: string;
+
   constructor(private materializeService: MaterializeService, private keycloakService: KeycloakService, private userService: UserService) { }
 
   ngOnInit(): void {
     this.loggedInUser$ = this.keycloakService.loggedInUser$;
 
     setTimeout(() => this.keycloakService.sendSignal(), 1);
-    console.log(localStorage.getItem('uuid'));
-
-    // this.loggedInUser$.subscribe( result =>{
-    //   this.something = result;
-    //   console.log(result);
-    //   if (result){
-    //     this.user = this.userService.getUserById(localStorage.getItem('uuid'));
-    //   }
-    // });
-    // this.loggedInUser$.subscribe(loggedInUser => {
-    //   if (loggedInUser){
-    //     this.userService.getLoggedInUser().subscribe(user => this.user = user)
-    //   }
-    // });
+    this.location = window.location.pathname;
   }
 
   ngAfterViewInit() {

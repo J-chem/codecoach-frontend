@@ -10,7 +10,11 @@ export class FooterComponent implements OnInit, AfterViewInit {
 
   constructor(private materializeService: MaterializeService) { }
 
+  location?: string;
+
   ngOnInit(): void {
+
+    this.location = window.location.pathname;
   }
 
   ngAfterViewInit() {
