@@ -67,7 +67,6 @@
               <div class="row right-align"
                    *ngIf="(email.errors?.['minlength' ] || email.errors?.['required'] || email.errors?.['pattern'])   && !email.pristine">
                 <p class="invalid-message">Please enter a valid <strong>email</strong>.</p>
-                <a class="waves-effect waves-light yellow darken-2 btn-large black-text" >Register<i class="material-icons right">send</i></a>
               </div>
               <div class="row right-align"
                    *ngIf="(password.errors?.['minlength' ] || password.errors?.['required'] || password.errors?.['pattern'])  && !password.pristine">
