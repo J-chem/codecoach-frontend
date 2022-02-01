@@ -15,6 +15,7 @@ import { CoachOverviewComponent } from './coach-overview/coach-overview.componen
 import {ProfileModule} from "./profile/profile.module";
 import { NameEmailFilterPipe } from './pipe/name-email-filter.pipe';
 import { TopicsFilterPipe } from './pipe/topics-filter.pipe';
+import { ExpertisesFilterPipe } from './pipe/expertises-filter.pipe';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { TopicsFilterPipe } from './pipe/topics-filter.pipe';
     AppComponent,
     CoachOverviewComponent,
     NameEmailFilterPipe,
-    TopicsFilterPipe
+    TopicsFilterPipe,
+    ExpertisesFilterPipe
   ],
   imports: [
     BrowserModule,

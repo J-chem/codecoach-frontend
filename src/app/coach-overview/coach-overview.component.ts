@@ -26,8 +26,9 @@ export class CoachOverviewComponent implements OnInit {
   levels$!: Observable<Expertise[]>;
   nameEmail!: string;
   topicChecker!: string;
-  expertiseChecker!: string;
-  something!: string;
+  expertiseChecker!: string[];
+  resetTopicFilter = "";
+  resetExpertiseFilter = []
 
 
   constructor(
@@ -58,21 +59,9 @@ export class CoachOverviewComponent implements OnInit {
       })}))
   }
 
-  topicCheckerFilter(){
-    this.topicChecker = "topics";
-  }
-
   getAllCoaches(): void {
     this.coachOverviewService.getAllCoaches().subscribe(coaches => {
       this.coaches$ = coaches
-      if (this.topicChecker !== undefined){
-        this.coaches$ = coaches
-      }
     });
-  }
-
-  weregoingtosendthetopic(topic: Topic) {
-    this.something = topic.topicName;
-    console.log(this.something);
   }
 }

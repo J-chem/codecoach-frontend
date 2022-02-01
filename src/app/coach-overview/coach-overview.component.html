@@ -8,11 +8,11 @@
             <div class="row">
               <div class="input-field col l3 m6 s12">
                 <form [formGroup]="topicForm">
-                  <select formControlName="topicControl">
-                    <option value="default" disabled selected>Choose topic</option>
+                  <select formControlName="topicControl" [(ngModel)]="topicChecker">
+                    <option [ngValue]="resetTopicFilter" selected>Choose topic</option>
                     <option
-                      [ngValue]="topic.topicId"
-                      *ngFor="let topic of topics$ | async as topics" (select)="weregoingtosendthetopic(topic)">
+                      [ngValue]="topic.topicName"
+                      *ngFor="let topic of topics$ | async as topics">
                       {{topic.topicName}}
                     </option>
                   </select>
@@ -22,11 +22,11 @@
 
               <div class="input-field col l3 m6 s12">
                 <form [formGroup]="levelForm">
-                  <select multiple formControlName="levelControl">
+                  <select multiple formControlName="levelControl" [(ngModel)]="expertiseChecker">
                     <option value="default" disabled selected>Choose level</option>
                     <option
-                      *ngFor="let level of levels$ | async as levels" (select)="topicCheckerFilter()"
-                      [ngValue]="level.id">
+                      *ngFor="let level of levels$ | async as levels"
+                      [ngValue]="level.expertise">
                       {{level.expertise}}
                     </option>
                   </select>
@@ -42,11 +42,11 @@
           </header>
 
           <div class="row">
-            <div *ngFor="let coach of coaches$ | nameEmailFilter: nameEmail" class="col l3 m4 s12">
+            <div *ngFor="let coach of coaches$ | nameEmailFilter: nameEmail | topicsFilter: topicChecker | expertisesFilter: expertiseChecker" class="col l3 m4 s12">
               <h5 class="header">{{coach.firstName}} {{coach.lastName}}</h5>
               <div class="card horizontal">
                 <div class="card-image">
-                  <img src="assets/images/dummy/profile-picture-coach.jpg">
+                  <img src="assets/images/profile-pictures/{{coach.profilePicture}}">
                 </div>
                 <div class="card-stacked">
                   <div class="card-content">
