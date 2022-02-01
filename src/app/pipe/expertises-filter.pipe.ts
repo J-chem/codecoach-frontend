@@ -15,7 +15,9 @@ export class ExpertisesFilterPipe implements PipeTransform {
         for (let coach of coaches) {
           for (let coachInfoTopic of coach.coachInfo.coachInfoTopicList) {
             if (coachInfoTopic.expertise.startsWith(expertise)) {
-              coachArray.push(coach);
+              if (!coachArray.includes(coach)){
+                coachArray.push(coach);
+              }
             }
           }
         }
