@@ -9,6 +9,7 @@ import {MyCoachProfileComponent} from "./coach-profile/my-coach-profile/my-coach
 import {ApplyBecomeACoachComponent} from "./coachee-profile/apply-become-a-coach/apply-become-a-coach.component";
 
 import {RequestSessionFormComponent} from "./request-session/request-session-form/request-session-form.component";
+import {CoachSessionOverviewComponent} from "./coach-profile/coach-session-overview/coach-session-overview.component";
 
 const routes: Routes = [
   {path: '', component: MainEnComponent},
@@ -18,9 +19,11 @@ const routes: Routes = [
   {
     path: 'profile', component: UserProfileComponent, children: [
       {path: 'become-a-coach', component: ApplyBecomeACoachComponent},
+      {path: 'coach/sessions', component: CoachSessionOverviewComponent},
       {path: 'coach', component: MyCoachProfileComponent}
     ]
   },
+
   {path: 'request-a-session/:id', component: RequestSessionFormComponent}
 ];
 

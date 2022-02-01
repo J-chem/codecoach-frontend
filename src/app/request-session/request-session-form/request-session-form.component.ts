@@ -78,7 +78,6 @@ export class RequestSessionFormComponent implements OnInit {
       coachId: this.activatedRoute.snapshot.params['id'],
       coacheeId: coachee
     };
-    console.log(sessionToRequest);
     this.sessionService.requestSession(sessionToRequest).subscribe(session => {
       if (session) {
         this.router.navigate(['profile']).then();
@@ -127,8 +126,7 @@ export class RequestSessionFormComponent implements OnInit {
 
   private getCoach() {
     const coachId = this.activatedRoute.snapshot.params['id'];
-    this.coach$ = this.userService.getUserById(coachId).pipe(tap((user) => {
-      console.log(user);
+    this.coach$ = this.userService.getUserById(coachId).pipe(tap(() => {
       setTimeout(() => {
         this.initializeDatePicker();
         this.initializeTimePicker();

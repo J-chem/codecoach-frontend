@@ -33,4 +33,8 @@ export class SessionService {
       return of(result as T);
     };
   }
+
+  getCoachSessions(): Observable<Session[]> {
+    return this.http.get<Session[]>(`${this.url}?coach=${localStorage.getItem('uuid')}`);
+  }
 }
