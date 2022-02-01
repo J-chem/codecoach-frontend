@@ -48,9 +48,7 @@ export class UserService {
   }
 
   getLoggedInUser(): Observable<User>{
-
     const url = `${this.url}/${localStorage.getItem('uuid')}`;
-    console.log(url);
     return this.http.get<User>(url, this.httpOptions).pipe(
       catchError(this.handleError<User>('getUser'))
     );
