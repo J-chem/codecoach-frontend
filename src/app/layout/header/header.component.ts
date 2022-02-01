@@ -27,9 +27,11 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     setTimeout(() => this.keycloakService.sendSignal(), 1);
     this.location = window.location.pathname;
 
-    this.loggedInUser$.subscribe(_ => {
-      console.log(localStorage.getItem('uuid'));
-      this.userService.getLoggedInUser().subscribe(user => this.user = user)
+    console.log(this.loggedInUser$);
+    this.loggedInUser$.subscribe(loggedInUser => {
+      if (loggedInUser){
+        this.userService.getLoggedInUser().subscribe(user => this.user = user)
+      }
     });
   }
 
