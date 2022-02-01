@@ -15,7 +15,6 @@ import {Observable, tap} from "rxjs";
 })
 export class RequestSessionFormComponent implements OnInit {
 
-
   private _requestSessionForm = new FormGroup({
     'topicId': new FormControl('', [Validators.required]),
     'date': new FormControl('', [Validators.required]),
