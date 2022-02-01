@@ -21,14 +21,14 @@ export class SessionService {
   requestSession(session: CreateSession): Observable<Session>{
     return this.http.post<Session>(this.url, session, this.httpOptions)
       .pipe(
-        catchError(this.handleError<Session>('request-session'))
+        catchError(this.handleError<Session>())
       );
 
   }
 
-  private handleError<T>(operation= 'operation', result?: T) {
+  private handleError<T>(result?: T) {
     return (error: any): Observable<T> => {
-      alert(operation + ' ' + error.error.message);
+      alert(error.error.message);
 
       return of(result as T);
     };
