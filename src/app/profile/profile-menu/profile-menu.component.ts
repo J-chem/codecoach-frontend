@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {MaterializeService} from "../../service/materialize.service";
-import {Observable, Subscription} from "rxjs";
+import {mergeMap, Observable, of, Subscription} from "rxjs";
 import {User} from "../../model/user";
 import {KeycloakService} from "../../service/keycloak.service";
 import {UserService} from "../../service/user.service";
@@ -15,7 +15,7 @@ export class ProfileMenuComponent implements OnInit, AfterViewInit, OnDestroy {
   loggedInUser$!: Observable<string | null>;
   loggedInSubscription?: Subscription;
 
-  user?: User;
+  user$?: Observable<User | null> ;
 
   something?: any;
 
@@ -26,17 +26,15 @@ export class ProfileMenuComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
     this.loggedInUser$ = this.keycloakService.loggedInUser$;
 
-    setTimeout(() => this.keycloakService.sendSignal(), 1);
+     this.keycloakService.sendSignal()
+
     this.location = window.location.pathname;
-    console.log('Profile menu init');
-    this.loggedInSubscription = this.loggedInUser$.subscribe(loggedInUser => {
+    this.user$ = this.loggedInUser$.pipe(mergeMap((loggedInUser) => {
       if (loggedInUser){
-        this.userService.getLoggedInUser().subscribe(user => {
-          console.log(user);
-          this.user = user;
-        });
+        return this.userService.getLoggedInUser()
       }
-    });
+      return of(null);
+    }));
   }
 
   ngAfterViewInit() {
@@ -44,7 +42,6 @@ export class ProfileMenuComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    console.log('Profile menu is destroyed');
     this.loggedInSubscription?.unsubscribe();
   }
 

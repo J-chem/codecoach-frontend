@@ -35,7 +35,7 @@ export class SigninComponent implements OnInit {
 
   onSubmit(signInData: any): void {
     this.keycloakService.logIn(signInData).subscribe((_ => {
-        this.route.navigateByUrl('/profile').then(() => window.location.reload());
+        this.route.navigateByUrl('/profile').then();
       }),
       (fault => {
         if (fault.status === 401) {

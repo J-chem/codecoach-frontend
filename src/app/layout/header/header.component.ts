@@ -1,9 +1,10 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {MaterializeService} from "../../service/materialize.service";
-import {Observable} from "rxjs";
+import {mergeMap, Observable, of} from "rxjs";
 import {KeycloakService} from "../../service/keycloak.service";
 import {User} from "../../model/user";
 import {UserService} from "../../service/user.service";
+import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -14,25 +15,34 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   loggedInUser$!: Observable<string | null>;
 
-  user?: User;
+  user$?: Observable<User | null>;
 
-  location?: string;
+  loggedUser?: User | null;
+
+  location?: string | null;
 
 
-  constructor(private materializeService: MaterializeService, private keycloakService: KeycloakService, private userService: UserService) {
+  constructor(private materializeService: MaterializeService, private keycloakService: KeycloakService, private userService: UserService, private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit(): void {
     this.loggedInUser$ = this.keycloakService.loggedInUser$;
-    setTimeout(() => this.keycloakService.sendSignal(), 1);
-    this.location = window.location.pathname;
 
-    console.log(this.loggedInUser$);
-    this.loggedInUser$.subscribe(loggedInUser => {
-      if (loggedInUser){
-        this.userService.getLoggedInUser().subscribe(user => this.user = user)
+    this.router.events.subscribe(result => {
+      if(result instanceof NavigationEnd){
+        this.location = window.location.pathname;
       }
-    });
+    })
+
+    this.user$ = this.loggedInUser$.pipe(mergeMap((loggedInUser) => {
+      if (loggedInUser){
+        return this.userService.getLoggedInUser()
+      }
+      return of(null);
+    }));
+
+    this.user$.subscribe(user => this.loggedUser = user);
+
   }
 
   logout() {

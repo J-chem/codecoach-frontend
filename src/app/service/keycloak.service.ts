@@ -64,7 +64,6 @@ export class KeycloakService {
 
   private setToken(accessToken: string) {
     localStorage.setItem(this.token_key_name, accessToken);
-    //this.sendSignal();
   }
 
   sendSignal(): void {

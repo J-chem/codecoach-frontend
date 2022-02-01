@@ -1,5 +1,6 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {MaterializeService} from "../../service/materialize.service";
+import {NavigationEnd, Router} from "@angular/router";
 
 @Component({
   selector: 'app-footer',
@@ -8,13 +9,18 @@ import {MaterializeService} from "../../service/materialize.service";
 })
 export class FooterComponent implements OnInit, AfterViewInit {
 
-  constructor(private materializeService: MaterializeService) { }
+  constructor(private materializeService: MaterializeService, private router: Router) { }
 
   location?: string;
 
   ngOnInit(): void {
 
-    this.location = window.location.pathname;
+
+    this.router.events.subscribe(result => {
+      if(result instanceof NavigationEnd){
+        this.location = window.location.pathname;
+      }
+    })
   }
 
   ngAfterViewInit() {
