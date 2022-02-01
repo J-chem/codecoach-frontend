@@ -32,7 +32,7 @@ export class CoachOverviewComponent implements OnInit {
 
   constructor(
     private coachOverviewService: CoachOverviewService,
-    private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder
   ) {
   }
 

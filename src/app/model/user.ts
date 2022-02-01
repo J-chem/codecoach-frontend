@@ -7,5 +7,6 @@ export interface User{
   'email': string,
   'team': string,
   'isCoach': boolean,
-  'coachInfo': CoachInfo
+  'coachInfo': CoachInfo,
+  'profilePicture': string
 }
