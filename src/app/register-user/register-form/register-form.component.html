@@ -12,36 +12,36 @@
             <form class="col s12" [formGroup]="registerUserForm" (ngSubmit)="onSubmit()">
               <div class="row">
                 <div class="input-field col s6">
-                  <input id="first_name" type="text" class="validate" formControlName="firstName">
+                  <input id="first_name" type="text" class="validate" [className]="firstName.pristine ? 'validate' : firstName.valid ? 'valid' : 'invalid'" formControlName="firstName">
                   <label for="first_name">First Name</label>
                 </div>
                 <div class="input-field col s6">
-                  <input id="last_name" type="text" class="validate" formControlName="lastName">
+                  <input id="last_name" type="text" class="validate" [className]="lastName.pristine ? 'validate' : lastName.valid ? 'valid' : 'invalid'" formControlName="lastName">
                   <label for="last_name">Last Name</label>
                 </div>
               </div>
 
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="team" type="text" class="validate" formControlName="team">
+                  <input id="team" type="text" class="validate" [className]="team.pristine ? 'validate' : team.valid ? 'valid' : 'invalid'" formControlName="team">
                   <label for="team">Team</label>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="email" type="email" class="validate" formControlName="email">
+                  <input id="email" type="email" class="validate" [className]="email.pristine ? 'validate' : email.valid ? 'valid' : 'invalid'" formControlName="email">
                   <label for="email">Email</label>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="password" type="password" class="validate" formControlName="password">
-                  <label for="password">Password</label>
+                  <input id="password" type="password" class="validate" [className]="password.pristine ? 'validate' : password.valid ? 'valid' : 'invalid'" formControlName="password">
+                  <label for="password">Password (Your password must contain 8 characters, 1 uppercase, 1 lowercase and 1 special character)</label>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="passwordVerification" type="password" class="validate" formControlName="repeat_password">
+                  <input id="passwordVerification" type="password" class="validate" [className]="repeat_password.pristine ? 'validate' : !registerUserForm.errors?.['notMatchingPassword'] ? 'valid' : 'invalid'" formControlName="repeat_password">
                   <label for="passwordVerification">Password (again)</label>
                 </div>
               </div>
