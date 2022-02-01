@@ -1,72 +1,80 @@
+<ng-container *ngIf="!sendingCoach$">
+  <main>
+    <div class="row">
+      <div class="col s12 m12">
+        <div class="content-container">
+          <section class="card-panel grey lighten-5">
+            <header>
+              <div class="row">
+                <div class="input-field col l3 m6 s12">
+                  <form [formGroup]="topicForm">
+                    <select formControlName="topicControl" [(ngModel)]="topicChecker">
+                      <option [ngValue]="resetTopicFilter" selected>Choose topic</option>
+                      <option
+                        [ngValue]="topic.topicName"
+                        *ngFor="let topic of topics$ | async as topics">
+                        {{topic.topicName}}
+                      </option>
+                    </select>
+                    <label>Filter by Topic</label>
+                  </form>
+                </div>
 
-<main>
-  <div class="row">
-    <div class="col s12 m12">
-      <div class="content-container">
-        <section class="card-panel grey lighten-5">
-          <header>
+                <div class="input-field col l3 m6 s12">
+                  <form [formGroup]="levelForm">
+                    <select multiple formControlName="levelControl" [(ngModel)]="expertiseChecker">
+                      <option value="default" disabled selected>Choose level</option>
+                      <option
+                        *ngFor="let level of levels$ | async as levels"
+                        [ngValue]="level.expertise">
+                        {{level.expertise}}
+                      </option>
+                    </select>
+                    <label>Filter by Expertise</label>
+                  </form>
+                </div>
+                <div class="input-field col l6 m12 s12">
+                  <i class="material-icons prefix">search</i>
+                  <input id="icon_prefix" type="text" class="validate" [(ngModel)]="nameEmail">
+                  <label for="icon_prefix">First name, last name or email</label>
+                </div>
+              </div>
+            </header>
+
             <div class="row">
-              <div class="input-field col l3 m6 s12">
-                <form [formGroup]="topicForm">
-                  <select formControlName="topicControl" [(ngModel)]="topicChecker">
-                    <option [ngValue]="resetTopicFilter" selected>Choose topic</option>
-                    <option
-                      [ngValue]="topic.topicName"
-                      *ngFor="let topic of topics$ | async as topics">
-                      {{topic.topicName}}
-                    </option>
-                  </select>
-                  <label>Filter by Topic</label>
-                </form>
-              </div>
-
-              <div class="input-field col l3 m6 s12">
-                <form [formGroup]="levelForm">
-                  <select multiple formControlName="levelControl" [(ngModel)]="expertiseChecker">
-                    <option value="default" disabled selected>Choose level</option>
-                    <option
-                      *ngFor="let level of levels$ | async as levels"
-                      [ngValue]="level.expertise">
-                      {{level.expertise}}
-                    </option>
-                  </select>
-                  <label>Filter by Expertise</label>
-                </form>
-              </div>
-              <div class="input-field col l6 m12 s12">
-                <i class="material-icons prefix">search</i>
-                <input id="icon_prefix" type="text" class="validate" [(ngModel)]="nameEmail">
-                <label for="icon_prefix">First name, last name or email</label>
-              </div>
-            </div>
-          </header>
-
-          <div class="row">
-            <div *ngFor="let coach of coaches$ | nameEmailFilter: nameEmail | topicsFilter: topicChecker | expertisesFilter: expertiseChecker" class="col l3 m4 s12">
-              <h5 class="header">{{coach.firstName}} {{coach.lastName}}</h5>
-              <div class="card horizontal">
-                <div class="card-image">
-                  <img src="assets/images/profile-pictures/{{coach.profilePicture}}">
-                </div>
-                <div class="card-stacked">
-                  <div class="card-content">
-                    <table class="highlight responsive-table">
-                      <tbody>
-                      <tr *ngFor="let info of coach.coachInfo.coachInfoTopicList">
-                        <td><strong>{{info.topic.topicName}}</strong></td>
-                        <td>{{info.expertise}}</td>
-                      </tr>
-                      </tbody>
-                    </table>
+              <div
+                *ngFor="let coach of coaches$ | nameEmailFilter: nameEmail | topicsFilter: topicChecker | expertisesFilter: expertiseChecker"
+                class="col l3 m4 s12">
+                <h5 class="header">{{coach.firstName}} {{coach.lastName}}</h5>
+                <div class="card horizontal">
+                  <div class="card-image">
+                    <img src="assets/images/profile-pictures/{{coach.profilePicture}}"
+                         (click)="showCoachDetailsPage(coach)">
                   </div>
-                  <a class="btn-floating halfway-fab waves-effect waves-light yellow darken-2 btn-large"><i
-                    class="material-icons" routerLink="/request-a-session/{{coach.id}}">send</i></a>
+                  <div class="card-stacked">
+                    <div class="card-content">
+                      <table class="highlight responsive-table">
+                        <tbody>
+                        <tr *ngFor="let info of coach.coachInfo.coachInfoTopicList">
+                          <td><strong>{{info.topic.topicName}}</strong></td>
+                          <td>{{info.expertise}}</td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <a class="btn-floating halfway-fab waves-effect waves-light yellow darken-2 btn-large"><i
+                      class="material-icons" routerLink="/request-a-session/{{coach.id}}">send</i></a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
       </div>
     </div>
-  </div>
-</main>
+  </main>
+</ng-container>
+
+
+<app-coach-details [receivingCoach$]="sendingCoach$" *ngIf="sendingCoach$">
+</app-coach-details>
