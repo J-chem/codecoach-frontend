@@ -29,6 +29,7 @@ export class CoachOverviewComponent implements OnInit {
   expertiseChecker!: string[];
   resetTopicFilter = "";
   resetExpertiseFilter = []
+  sendingCoach$!: User;
 
 
   constructor(
@@ -63,5 +64,9 @@ export class CoachOverviewComponent implements OnInit {
     this.coachOverviewService.getAllCoaches().subscribe(coaches => {
       this.coaches$ = coaches
     });
+  }
+
+  showCoachDetailsPage(coach: User) {
+      this.sendingCoach$ = coach;
   }
 }

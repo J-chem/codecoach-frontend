@@ -5,7 +5,6 @@ import {KeycloakTokenResponse} from "../keycloak/keycloak-token-response";
 import * as JWT from 'jwt-decode';
 import {KeycloakToken} from "../keycloak/keycloak-token";
 import {KeycloakUserInfoService} from "./keycloak-user-info.service";
-import {KeycloakUserInfo} from "../keycloak/keycloak-user-info";
 import {Router} from "@angular/router";
 
 @Injectable({
@@ -60,11 +59,11 @@ export class KeycloakService {
 
   private setId(id: string) {
     localStorage.setItem(this.uuid, id);
+    this.sendSignal();
   }
 
   private setToken(accessToken: string) {
     localStorage.setItem(this.token_key_name, accessToken);
-    this.sendSignal();
   }
 
   sendSignal(): void {

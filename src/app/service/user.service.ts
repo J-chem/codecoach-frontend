@@ -40,12 +40,14 @@ export class UserService {
     return this.http.post<any>(url, null);
   }
 
-  getUserById(userId: string): Observable<User> {
+  getUserById(userId: string | null): Observable<User> {
+    if (userId === null) {
+      console.log("no user logged in");
+    }
     return this.http.get<User>(`${this.url}/${userId}`);
   }
 
   getLoggedInUser(): Observable<User>{
-
     const url = `${this.url}/${localStorage.getItem('uuid')}`;
     return this.http.get<User>(url, this.httpOptions).pipe(
       catchError(this.handleError<User>('getUser'))

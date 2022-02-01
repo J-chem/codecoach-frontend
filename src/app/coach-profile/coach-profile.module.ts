@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MyCoachProfileComponent } from './my-coach-profile/my-coach-profile.component';
 import { CoachSessionOverviewComponent } from './coach-session-overview/coach-session-overview.component';
+import {ProfileModule} from "../profile/profile.module";
 
 
 
@@ -10,8 +11,8 @@ import { CoachSessionOverviewComponent } from './coach-session-overview/coach-se
     MyCoachProfileComponent,
     CoachSessionOverviewComponent
   ],
-  imports: [
-    CommonModule
-  ]
+    imports: [
+        CommonModule
+    ]
 })
 export class CoachProfileModule { }

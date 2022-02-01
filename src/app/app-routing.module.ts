@@ -10,6 +10,7 @@ import {ApplyBecomeACoachComponent} from "./coachee-profile/apply-become-a-coach
 
 import {RequestSessionFormComponent} from "./request-session/request-session-form/request-session-form.component";
 import {CoachSessionOverviewComponent} from "./coach-profile/coach-session-overview/coach-session-overview.component";
+import {MyProfileComponent} from "./coachee-profile/my-profile/my-profile.component";
 
 const routes: Routes = [
   {path: '', component: MainEnComponent},
@@ -23,8 +24,8 @@ const routes: Routes = [
       {path: 'coach', component: MyCoachProfileComponent}
     ]
   },
-
-  {path: 'request-a-session/:id', component: RequestSessionFormComponent}
+  {path: 'request-a-session/:id', component: RequestSessionFormComponent},
+  {path: 'my-profile', component: MyProfileComponent}
 ];
 
 @NgModule({

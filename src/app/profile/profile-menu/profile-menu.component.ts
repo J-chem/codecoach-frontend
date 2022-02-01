@@ -1,47 +1,51 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {MaterializeService} from "../../service/materialize.service";
-import {Observable} from "rxjs";
+import {mergeMap, Observable, of, Subscription} from "rxjs";
 import {User} from "../../model/user";
 import {KeycloakService} from "../../service/keycloak.service";
+import {UserService} from "../../service/user.service";
 
 @Component({
   selector: 'app-profile-menu',
   templateUrl: './profile-menu.component.html',
   styleUrls: ['./profile-menu.component.css']
 })
-export class ProfileMenuComponent implements OnInit, AfterViewInit {
+export class ProfileMenuComponent implements OnInit, AfterViewInit, OnDestroy {
 
   loggedInUser$!: Observable<string | null>;
+  loggedInSubscription?: Subscription;
 
-  user?: User;
+  user?: User | null;
 
   something?: any;
 
-  constructor(private materializeService: MaterializeService, private keycloakService: KeycloakService) { }
+  location?: string;
+
+
+  constructor(private materializeService: MaterializeService, private keycloakService: KeycloakService, private userService: UserService) { }
 
   ngOnInit(): void {
-    console.log("hello1");
     this.loggedInUser$ = this.keycloakService.loggedInUser$;
-    console.log('hello2');
-    console.log(this.loggedInUser$);
-    setTimeout(() => this.keycloakService.sendSignal(), 1);
-    console.log(("hello3"));
-    // this.loggedInUser$.subscribe( result =>{
-    //   this.something = result;
-    //   console.log(result);
-    //   if (result){
-    //     this.userService.getUserById().subscribe(user => this.user = user)
-    //   }
-    // });
-    // this.loggedInUser$.subscribe(loggedInUser => {
-    //   if (loggedInUser){
-    //     this.userService.getUserById().subscribe(user => this.user = user)
-    //   }
-    // });
+
+    if (this.keycloakService.isLoggedIn()) {
+      this.userService.getLoggedInUser().subscribe(user => this.user = user);
+    }
+
+    this.location = window.location.pathname;
+    this.loggedInUser$.pipe(mergeMap((loggedInUser) => {
+      if (loggedInUser){
+        return this.userService.getLoggedInUser()
+      }
+      return of(null);
+    })).subscribe(user => this.user = user);
   }
 
   ngAfterViewInit() {
     this.materializeService.autoInit();
+  }
+
+  ngOnDestroy(): void {
+    this.loggedInSubscription?.unsubscribe();
   }
 
 }
