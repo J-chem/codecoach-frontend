@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MyCoachProfileComponent } from './my-coach-profile/my-coach-profile.component';
+import {ProfileModule} from "../profile/profile.module";
 
 
 
@@ -8,8 +9,8 @@ import { MyCoachProfileComponent } from './my-coach-profile/my-coach-profile.com
   declarations: [
     MyCoachProfileComponent
   ],
-  imports: [
-    CommonModule
-  ]
+    imports: [
+        CommonModule
+    ]
 })
 export class CoachProfileModule { }
