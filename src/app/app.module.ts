@@ -13,12 +13,18 @@ import { RequestSessionModule } from './request-session/request-session.module';
 import { CoachOverviewComponent } from './coach-overview/coach-overview.component';
 
 import {ProfileModule} from "./profile/profile.module";
+import { NameEmailFilterPipe } from './pipe/name-email-filter.pipe';
+import { TopicsFilterPipe } from './pipe/topics-filter.pipe';
+import { ExpertisesFilterPipe } from './pipe/expertises-filter.pipe';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CoachOverviewComponent
+    CoachOverviewComponent,
+    NameEmailFilterPipe,
+    TopicsFilterPipe,
+    ExpertisesFilterPipe
   ],
   imports: [
     BrowserModule,

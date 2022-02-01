@@ -5,6 +5,7 @@ import {FormBuilder} from "@angular/forms";
 import {Observable, tap} from "rxjs";
 import {Topic} from "../model/topic";
 import {User} from "../model/user";
+import {TopicsFilterPipe} from "../pipe/topics-filter.pipe";
 
 @Component({
   selector: 'app-coach-overview',
@@ -23,6 +24,11 @@ export class CoachOverviewComponent implements OnInit {
   coaches$!: User[];
   topics$!: Observable<Topic[]>;
   levels$!: Observable<Expertise[]>;
+  nameEmail!: string;
+  topicChecker!: string;
+  expertiseChecker!: string[];
+  resetTopicFilter = "";
+  resetExpertiseFilter = []
 
 
   constructor(
@@ -56,12 +62,6 @@ export class CoachOverviewComponent implements OnInit {
   getAllCoaches(): void {
     this.coachOverviewService.getAllCoaches().subscribe(coaches => {
       this.coaches$ = coaches
-      console.log(coaches)
     });
-  }
-
-  onSubmit() {
-    // console.log(JSON.stringify(this.topicForm.value))
-    // console.log(JSON.stringify(this.levelForm.value))
   }
 }

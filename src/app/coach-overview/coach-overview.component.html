@@ -7,11 +7,11 @@
           <header>
             <div class="row">
               <div class="input-field col l3 m6 s12">
-                <form [formGroup]="topicForm" (ngSubmit)="onSubmit()">
-                  <select formControlName="topicControl">
-                    <option value="default" disabled selected>Choose topic</option>
+                <form [formGroup]="topicForm">
+                  <select formControlName="topicControl" [(ngModel)]="topicChecker">
+                    <option [ngValue]="resetTopicFilter" selected>Choose topic</option>
                     <option
-                      [ngValue]="topic.topicId"
+                      [ngValue]="topic.topicName"
                       *ngFor="let topic of topics$ | async as topics">
                       {{topic.topicName}}
                     </option>
@@ -21,12 +21,12 @@
               </div>
 
               <div class="input-field col l3 m6 s12">
-                <form [formGroup]="levelForm" (ngSubmit)="onSubmit()">
-                  <select multiple formControlName="levelControl">
+                <form [formGroup]="levelForm">
+                  <select multiple formControlName="levelControl" [(ngModel)]="expertiseChecker">
                     <option value="default" disabled selected>Choose level</option>
                     <option
                       *ngFor="let level of levels$ | async as levels"
-                      [ngValue]="level.id">
+                      [ngValue]="level.expertise">
                       {{level.expertise}}
                     </option>
                   </select>
@@ -35,17 +35,17 @@
               </div>
               <div class="input-field col l6 m12 s12">
                 <i class="material-icons prefix">search</i>
-                <input id="icon_prefix" type="text" class="validate">
+                <input id="icon_prefix" type="text" class="validate" [(ngModel)]="nameEmail">
                 <label for="icon_prefix">First name, last name or email</label>
               </div>
             </div>
           </header>
 
           <div class="row">
-            <div *ngFor="let coach of coaches$" class="col l3 m4 s12">
+            <div *ngFor="let coach of coaches$ | nameEmailFilter: nameEmail | topicsFilter: topicChecker | expertisesFilter: expertiseChecker" class="col l3 m4 s12">
               <h5 class="header">{{coach.firstName}} {{coach.lastName}}</h5>
               <div class="card horizontal">
-                <div class="card-image"  routerLink="">
+                <div class="card-image">
                   <img src="assets/images/profile-pictures/{{coach.profilePicture}}">
                 </div>
                 <div class="card-stacked">
