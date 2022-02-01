@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../service/user.service";
 import {User} from "../../model/user";
+import {Router} from "@angular/router";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-my-profile',
@@ -9,9 +11,13 @@ import {User} from "../../model/user";
 })
 export class MyProfileComponent implements OnInit {
 
-  user$!: User;
+  user$!: Observable<User>;
+  editMode!: boolean;
 
-  constructor(private userService: UserService) {
+  constructor(
+    private userService: UserService,
+    private router: Router
+    ) {
   }
 
   ngOnInit(): void {
@@ -20,7 +26,11 @@ export class MyProfileComponent implements OnInit {
 
   getUser(): void {
     const id = localStorage.getItem('uuid');
-    this.userService.getUserById(id).subscribe(user => this.user$ = user);
+    this.user$ = this.userService.getUserById(id);
   }
 
+  passTheUser(user$: Observable<User>) {
+    this.editMode = true;
+    this.user$ = user$;
+  }
 }

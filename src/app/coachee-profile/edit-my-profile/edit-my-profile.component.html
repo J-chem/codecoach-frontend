@@ -1,0 +1,73 @@
+<div class="row">
+
+  <div class="col s12 m2">
+    <div class="content-container">
+      <h6>My Profile</h6>
+      <div class="collection">
+        <a href="#!" class="collection-item black-text active yellow darken-2">Profile Information</a>
+        <a href="#!" class="collection-item grey-text text-darken-2">Coaching sessions</a>
+        <a href="#!" class="collection-item grey-text text-darken-2">Apply to become a coach</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col s12 m10">
+    <div class="content-container" *ngIf="user$ | async as user" >
+
+
+      <section>
+        <form [formGroup]="editProfileForm" (ngSubmit)="onSubmit(editProfileForm.value)" >
+
+
+          <div class="right card-panel grey lighten-5">
+
+            <h5>Edit Profile</h5>
+            <div class="divider"></div>
+
+            <div class="row">
+
+              <div class="col l2 m2 s12">
+                <img src="assets/images/profile-pictures/{{user.profilePicture}}" class="responsive-img circle"
+                     alt="Profile Picture">
+              </div>
+
+              <div class="col l10 m12 s12">
+                <table class="highlight">
+                  <tbody>
+                  <tr>
+                    <td><strong>First name</strong></td>
+                    <td><input formControlName="firstName"></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Last name</strong></td>
+                    <td><input formControlName="lastName"></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Email</strong></td>
+                    <td>{{user.email}}</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Team</strong></td>
+                    <td><input formControlName="team"></td>
+                  </tr>
+                  </tbody>
+
+                </table>
+
+              </div>
+
+            </div> <!-- row -->
+
+          </div> <!-- right -->
+          <button class="btn-floating right waves-effect waves-light yellow darken-2 btn-large"><i
+            class="material-icons" >send</i></button>
+
+        </form>
+      </section>
+
+    </div> <!-- container -->
+  </div>
+
+</div> <!-- row -->
+
+
