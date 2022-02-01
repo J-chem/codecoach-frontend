@@ -31,13 +31,14 @@
       </ul>
       <a data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
-    <div class="nav-content yellow darken-3" *ngIf="loggedInUser$ | async as loggedInUser;">
+    <div class="nav-content" *ngIf="loggedInUser$ | async as loggedInUser;" [ngClass]="location != '/profile/coach' ? 'yellow darken-2' : 'teal lighten-3'">
       <div class="container">
         <ul class="tabs tabs-transparent">
-          <li class="tab"><a class="grey-text text-darken-2" href="#" routerLink="/my-profile">My Profile</a></li>
-          <li class="tab"><a class="grey-text text-darken-2" href="#" routerLink="/find-a-coach"
+          <li class="tab"><a class="grey-text text-darken-2" routerLink="/profile">My Profile</a></li>
+          <li class="tab"><a class="grey-text text-darken-2" routerLink="/find-a-coach"
           >Find a coach</a></li>
-          <li class="tab"><a class="black-test" href="#" routerLink="profile/coach">My Coach Profile</a></li>
+
+            <li *ngIf="loggedUser?.isCoach" class="tab"><a class="black-test" href="#" routerLink="profile/coach">My Coach Profile</a></li>
         </ul>
       </div>
     </div>

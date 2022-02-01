@@ -31,7 +31,6 @@ export class MyCoachProfileComponent implements OnInit, AfterViewInit {
   getUserById(): void{
     this.userService.getLoggedInUser().subscribe(user => {
       this.selectedUser = user
-      console.log(user)
     });
 
   }

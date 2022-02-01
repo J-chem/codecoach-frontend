@@ -1,7 +1,6 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {MaterializeService} from "../../service/materialize.service";
-import {Observable} from "rxjs";
-import {KeycloakService} from "../../service/keycloak.service";
+import {NavigationEnd, Router} from "@angular/router";
 
 @Component({
   selector: 'app-footer',
@@ -9,14 +8,16 @@ import {KeycloakService} from "../../service/keycloak.service";
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit, AfterViewInit {
-  loggedInUser$!: Observable<string | null>;
+  location?: string;
 
-  constructor(private materializeService: MaterializeService, private keycloakService: KeycloakService) { }
+  constructor(private materializeService: MaterializeService, private router: Router) { }
 
   ngOnInit(): void {
-    this.loggedInUser$ = this.keycloakService.loggedInUser$;
-    setTimeout(() => this.keycloakService.sendSignal(), 1);
-    console.log(this.loggedInUser$);
+    this.router.events.subscribe(result => {
+      if(result instanceof NavigationEnd){
+        this.location = window.location.pathname;
+      }
+    })
   }
 
   ngAfterViewInit() {
