@@ -47,7 +47,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   logout() {
     this.keycloakService.logout();
-    console.log('logged out');
   }
 
   ngAfterViewInit() {

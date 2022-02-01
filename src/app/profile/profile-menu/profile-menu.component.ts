@@ -21,6 +21,7 @@ export class ProfileMenuComponent implements OnInit, AfterViewInit, OnDestroy {
 
   location?: string;
 
+
   constructor(private materializeService: MaterializeService, private keycloakService: KeycloakService, private userService: UserService) { }
 
   ngOnInit(): void {
