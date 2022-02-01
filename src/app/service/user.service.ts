@@ -11,7 +11,7 @@ import {CreateUser} from "../model/create-user";
 })
 export class UserService {
 
-  private url: string;
+  private readonly url!: string;
   httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
 
 
@@ -60,5 +60,11 @@ export class UserService {
     console.log(`isUserEmailTaken ${userEmail}`);
     const url = `${this.url}/useremailavailability`
     return this.http.post<boolean>(url, userEmail);
+  }
+
+  saveProfile(editedProfile: User): Observable<User> {
+    console.log(editedProfile.id)
+    const url = `${this.url}/${editedProfile.id}`;
+    return this.http.put<User>(url, editedProfile);
   }
 }

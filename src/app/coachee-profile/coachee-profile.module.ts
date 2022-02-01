@@ -4,16 +4,20 @@ import { ApplyBecomeACoachComponent } from './apply-become-a-coach/apply-become-
 import {RouterModule} from "@angular/router";
 import {CoacheeProfileRoutingModule} from "./coachee-profile-routing.module";
 import { MyProfileComponent } from './my-profile/my-profile.component';
+import { EditMyProfileComponent } from './edit-my-profile/edit-my-profile.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     ApplyBecomeACoachComponent,
-    MyProfileComponent
+    MyProfileComponent,
+    EditMyProfileComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
-    CoacheeProfileRoutingModule
+    CoacheeProfileRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class CoacheeProfileModule { }
