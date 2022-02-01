@@ -15,7 +15,7 @@ export class ProfileMenuComponent implements OnInit, AfterViewInit, OnDestroy {
   loggedInUser$!: Observable<string | null>;
   loggedInSubscription?: Subscription;
 
-  user$?: Observable<User | null> ;
+  user?: User | null;
 
   something?: any;
 
@@ -27,14 +27,17 @@ export class ProfileMenuComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
     this.loggedInUser$ = this.keycloakService.loggedInUser$;
 
+    if (this.keycloakService.isLoggedIn()) {
+      this.userService.getLoggedInUser().subscribe(user => this.user = user);
+    }
 
     this.location = window.location.pathname;
-    this.user$ = this.loggedInUser$.pipe(mergeMap((loggedInUser) => {
+    this.loggedInUser$.pipe(mergeMap((loggedInUser) => {
       if (loggedInUser){
         return this.userService.getLoggedInUser()
       }
       return of(null);
-    }));
+    })).subscribe(user => this.user = user);
   }
 
   ngAfterViewInit() {
