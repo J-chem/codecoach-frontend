@@ -26,7 +26,6 @@ export class ProfileMenuComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
     this.loggedInUser$ = this.keycloakService.loggedInUser$;
 
-     this.keycloakService.sendSignal()
 
     this.location = window.location.pathname;
     this.user$ = this.loggedInUser$.pipe(mergeMap((loggedInUser) => {
