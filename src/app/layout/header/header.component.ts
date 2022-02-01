@@ -22,7 +22,12 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   location?: string | null;
 
 
-  constructor(private materializeService: MaterializeService, private keycloakService: KeycloakService, private userService: UserService, private route: ActivatedRoute, private router: Router) {
+  constructor(
+    private materializeService: MaterializeService,
+    private keycloakService: KeycloakService,
+    private userService: UserService,
+    private route: ActivatedRoute,
+    private router: Router) {
   }
 
   ngOnInit(): void {
