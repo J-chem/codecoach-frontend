@@ -1,9 +1,7 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MyCoachProfileComponent } from './my-coach-profile/my-coach-profile.component';
-import { CoachSessionOverviewComponent } from './coach-session-overview/coach-session-overview.component';
-import {ProfileModule} from "../profile/profile.module";
-
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {MyCoachProfileComponent} from './my-coach-profile/my-coach-profile.component';
+import {CoachSessionOverviewComponent} from './coach-session-overview/coach-session-overview.component';
 
 
 @NgModule({
